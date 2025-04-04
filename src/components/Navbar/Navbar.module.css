@@ -1,0 +1,44 @@
+.navbar {
+  background-image: linear-gradient(to right,#1E1E1E, #101828 );
+}
+
+.navbarToggler {
+  border: none;
+  outline: none;
+  padding: 0.5rem;
+}
+
+.navbarToggler:focus {
+  box-shadow: none;
+}
+
+.iconToggle {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease-in-out;
+  color: #fff;
+}
+
+.authButtons {
+  margin-left: 1rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+@media (max-width: 991.98px) {
+  .authButtons {
+    margin: 0.5rem 0 1rem;
+    width: 100%;
+  }
+  
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
