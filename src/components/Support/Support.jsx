@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function Support() {
-  return (
-    <div>Support</div>
-  )
+  return <div>Support</div>;
 }
