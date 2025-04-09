@@ -3,8 +3,9 @@ import styles from './Footer.module.css';
 
 export default function Footer() {
   return (< >
-  <div div className={`${styles.footer} fixed-bottom pt-3`}>
-  <div className="row">
+  <div div className={`${styles.footer} pt-3`}>
+   <div className="container">
+   <div className="row">
       <div className="col-md-4">
           <i className='fas fa-home fs-5'></i>
       </div>
@@ -29,6 +30,7 @@ export default function Footer() {
 
 
     </div>
+   </div>
   </div>
     
   
