@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
-import styles from './Navbar.module.css';
-//import  Link
-import { Link } from 'react-router-dom';
-
-
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import styles from "./Navbar.module.css";
+import logo from "./theSmallLogo.svg";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,50 +11,95 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`navbar navbar-expand-lg  ${styles.navbar}`}>
-      <div className="container">
-        <Link className="navbar-brand text-white" to="/">Navbar</Link>
-        <button 
-          className={`navbar-toggler ${styles.navbarToggler}`} 
-          type="button" 
-          data-bs-toggle="collapse" 
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav" 
-          aria-expanded={isOpen}
-          aria-label="Toggle navigation"
+    <nav className={`navbar navbar-expand-lg ${styles.navbar}`}>
+      <div className="container-fluid">
+        {/* Left: Logo + Site Name */}
+        <NavLink className={`navbar-brand ${styles["navbar-brand"]}`} to="/">
+          <img src={logo} alt="Logo" className={styles["brand-logo"]} />
+          Mr <strong>.Defence</strong>
+        </NavLink>
+
+        {/* Mobile toggle */}
+        <button
+          className={`navbar-toggler ${styles.navbarToggler}`}
+          type="button"
           onClick={toggleNavbar}
         >
-          <i className={`fas ${isOpen ? 'fa-times' : 'fa-bars'} ${styles.iconToggle}`}></i>
+          <i
+            className={`fas ${isOpen ? "fa-times" : "fa-bars"} ${
+              styles.iconToggle
+            }`}
+          ></i>
         </button>
-        <div className={`collapse navbar-collapse justify-content-end ${isOpen ? 'show' : ''}`} id="navbarNav">
-          <ul className="navbar-nav me-3">
+
+        {/* Right: Nav links */}
+        <div
+          className={`collapse navbar-collapse justify-content-end ${
+            isOpen ? "show" : ""
+          }`}
+        >
+          <ul className="navbar-nav">
             <li className="nav-item">
-              <Link className="nav-link " to="/">home</Link>
+              <NavLink
+                className={({ isActive }) =>
+                  `nav-link ${styles["nav-link"]} ${
+                    isActive ? styles.activeLink : ""
+                  }`
+                }
+                to="/"
+              >
+                Home
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/explore">explore</Link>
+              <NavLink
+                className={({ isActive }) =>
+                  `nav-link ${styles["nav-link"]} ${
+                    isActive ? styles.activeLink : ""
+                  }`
+                }
+                to="/about"
+              >
+                About Us
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/about">about</Link>
-            </li><li className="nav-item">
-              <Link className="nav-link" to="/premium">premium</Link>
-            </li><li className="nav-item">
-              <Link className="nav-link" to="/careers">careers</Link>
+              <NavLink
+                className={({ isActive }) =>
+                  `nav-link ${styles["nav-link"]} ${
+                    isActive ? styles.activeLink : ""
+                  }`
+                }
+                to="/crime-reports"
+              >
+                Crime Reports
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/enterprise">enterprise</Link>
+              <NavLink
+                className={({ isActive }) =>
+                  `nav-link ${styles["nav-link"]} ${
+                    isActive ? styles.activeLink : ""
+                  }`
+                }
+                to="/crime-responses"
+              >
+                Crime Response's
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                className={({ isActive }) =>
+                  `nav-link ${styles["nav-link"]} ${
+                    isActive ? styles.activeLink : ""
+                  }`
+                }
+                to="/contact"
+              >
+                Contact Us
+              </NavLink>
             </li>
           </ul>
-          <div className={`d-flex ms-3 ${styles.authButtons}`}>
-            <button className={`btn btn-outline-light me-2 ${styles.btn}`}>
-              <i className="fas fa-sign-in-alt me-2"></i> 
-              Login
-            </button>
-            <button className={`btn btn-light ${styles.btn}`}>
-              <i className="fas fa-user-plus me-2"></i> 
-              Register
-            </button>
-          </div>
         </div>
       </div>
     </nav>
