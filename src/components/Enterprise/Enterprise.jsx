@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function Enterprise() {
-  return (
-    <div>Enterprise</div>
-  )
+  return <div>Enterprise</div>;
 }

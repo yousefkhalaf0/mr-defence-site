@@ -1,0 +1,177 @@
+.custom-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e9ecef;
+  }
+  
+  .card-body p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  .navbar i {
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .navbar i:hover {
+    color: #198754;
+  }
+  .hero-section {
+    padding: 5rem 0;
+    position: relative;
+  }
+  
+  .hero-section h1 {
+    font-size: 3rem;
+    letter-spacing: -0.5px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-section .lead {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+  }
+  
+  @media (max-width: 768px) {
+    .hero-section {
+      padding: 3rem 0;
+    }
+    
+    .hero-section h1 {
+      font-size: 2.25rem;
+    }
+    
+    .hero-section .lead {
+      font-size: 1.1rem;
+    }
+  }
+  /* Pulse animation */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.hero-section {
+  padding: 5rem 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 3rem 0;
+  }
+  
+  .display-5 {
+    font-size: 2rem;
+  }
+  
+  .lead {
+    font-size: 1.1rem;
+  }
+  
+  .badge {
+    padding: 0.5rem !important;
+    font-size: 0.8rem;
+  }
+}
+/* Card hover effect */
+.hover-card {
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Image zoom effect */
+.hover-zoom {
+  transition: transform 0.5s ease;
+}
+
+.hover-zoom:hover {
+  transform: scale(1.03);
+}
+
+/* Text hover effects */
+.hover-text-primary:hover {
+  color: #0d6efd !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* Avatar styling */
+.custom-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1.5rem !important;
+  }
+  
+  .card-body {
+    padding: 1rem !important;
+  }
+}
+/* Statistics Section */
+.stat-card {
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.stat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.1) !important;
+}
+
+/* How It Works Section */
+.step-card {
+  background: white;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.03);
+}
+
+.step-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+.icon-wrapper {
+  width: 80px;
+  height: 80px;
+  transition: all 0.3s ease;
+}
+
+.step-card:hover .icon-wrapper {
+  transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .stat-card, .step-card {
+    padding: 1.5rem !important;
+  }
+  
+  .icon-wrapper {
+    width: 60px;
+    height: 60px;
+  }
+}
