@@ -1,0 +1,17 @@
+.carousel-items-wrapper {
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .card .badge {
+    font-size: 0.75rem;
+    padding: 0.4em 0.8em;
+    z-index: 10;
+  }
+  
+  .card,
+  .card-body,
+  .card-img-top,
+  .container {
+    background-color: transparent !important;
+  }
+  

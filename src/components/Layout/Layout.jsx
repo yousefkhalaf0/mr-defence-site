@@ -10,9 +10,7 @@ export default function Layout() {
   return (
     <>
       <Navbar />
-      <div className="w-100" style={{
-        backgroundImage: " linear-gradient(to left, #1E1E1E, #101828 )"
-      }}>
+      <div >
         <div className="">
           <Outlet />
         </div>

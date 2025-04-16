@@ -15,7 +15,7 @@ const Navbar = () => {
   return (
     <nav className={`navbar navbar-expand-lg  ${styles.navbar}`}>
       <div className="container">
-        <Link className="navbar-brand text-white" to="/">Navbar</Link>
+        <Link className="navbar-brand text-white" to="/">mr-defence</Link>
         <button 
           className={`navbar-toggler ${styles.navbarToggler}`} 
           type="button" 
