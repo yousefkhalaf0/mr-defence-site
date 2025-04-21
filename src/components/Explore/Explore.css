@@ -5,6 +5,11 @@
     object-fit: cover;
     border: 2px solid #e9ecef;
   }
+  .explore-container h1 ,h2{
+    background: linear-gradient(to top, #263238, #6A8CA4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
   
   .card-body p {
     font-size: 0.95rem;

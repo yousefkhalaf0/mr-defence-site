@@ -10,33 +10,20 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
-  return (
-<<<<<<< HEAD
-    <nav className={`navbar navbar-expand-lg  ${styles.navbar}`}>
-      <div className="container">
-        <Link className="navbar-brand text-white" to="/">mr-defence</Link>
-        <button 
-          className={`navbar-toggler ${styles.navbarToggler}`} 
-          type="button" 
-          data-bs-toggle="collapse" 
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav" 
-          aria-expanded={isOpen}
-          aria-label="Toggle navigation"
-=======
-    <nav className={`navbar navbar-expand-lg ${styles.navbar}`}>
+  return ( 
+    <nav className={`navbar fixed-top navbar-expand-lg ${styles.navbar}`}>
       <div className="container-fluid">
         {/* Left: Logo + Site Name */}
         <NavLink className={`navbar-brand ${styles["navbar-brand"]}`} to="/">
           <img src={logo} alt="Logo" className={styles["brand-logo"]} />
-          Mr <strong>.Defence</strong>
+          Mr <strong>. Defence</strong>
         </NavLink>
 
         {/* Mobile toggle */}
         <button
           className={`navbar-toggler ${styles.navbarToggler}`}
           type="button"
->>>>>>> master
+ 
           onClick={toggleNavbar}
         >
           <i
@@ -96,9 +83,21 @@ const Navbar = () => {
                     isActive ? styles.activeLink : ""
                   }`
                 }
-                to="/crime-responses"
+                to="/Explore"
               >
-                Crime Response's
+                Explore
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                className={({ isActive }) =>
+                  `nav-link ${styles["nav-link"]} ${
+                    isActive ? styles.activeLink : ""
+                  }`
+                }
+                to="/tutorials"
+              >
+                Tutorials
               </NavLink>
             </li>
             <li className="nav-item">
