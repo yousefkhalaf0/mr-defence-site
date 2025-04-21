@@ -55,7 +55,7 @@ const Carousel = () => {
   }, []);
 
   return (
-    <div className="container my-4 bg-transparent p-5">
+    <div className="container my-2 bg-transparent px-5">
       <div className="row gx-3 carousel-items-wrapper">
         {getVisibleItems().map((item, i) => (
           <div key={i} className="col-12 col-md-6">
