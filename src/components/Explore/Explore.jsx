@@ -16,24 +16,24 @@ const Explore = () => {
   }, []);
 
   return (
-    <div className="explore-container ">
+    <div className="explore-container mt-5">
       {/* Hero Section */}
       <div className="hero-section text-center py-5">
       <div className="container-fluid">
         {/* Community icon with animation */}
         <div className="mb-4" data-aos="fade-down" data-aos-delay="100">
-          <i className="fas fa-users fa-3x text-light" style={{
+          <i className="fas fa-users fa-3x text-danger" style={{
             animation: 'pulse 2s infinite'
           }}></i>
         </div>
         
-        <h1 className="display-5 text-light fw-bold mb-3" 
+        <h1 className="display-5 fw-bold mb-3" 
             data-aos="fade-up" 
             data-aos-delay="200">
           Community Safety Network
         </h1>
         
-        <p className="lead mb-4 text-light mx-auto" 
+        <p className="lead mb-4 text-muted mx-auto" 
            style={{ maxWidth: '600px', lineHeight: '1.6' }}
            data-aos="fade-up" 
            data-aos-delay="300">
@@ -76,11 +76,11 @@ const Explore = () => {
  
 
       {/* Main Content Section */}
-      <div className="main-content container-fluid p-4 p-md-5">
+      <div className="main-content container p-4 p-md-5">
   <div className="row g-4">
     {[...Array(6)].map((_, index) => (
       <div key={index} className="col-lg-4 col-md-6 col-12">
-        <div className="card shadow-sm border-0 h-100 hover-card">
+        <div className="card shadow border-1 border-danger h-100 hover-card">
           <div className="card-body p-3 p-md-4">
             <div className="d-flex align-items-center mb-3">
               <img
@@ -130,8 +130,8 @@ const Explore = () => {
 
         {/* Statistics Section */}
 <div className="statistics-section py-5">
-  <div className="container-fluid">
-    <h2 className="text-center text-light mb-5" data-aos="fade-down">Community Statistics</h2>
+  <div className="container">
+    <h2 className="text-center mb-5" data-aos="fade-down">Community Statistics</h2>
     <div className="row text-center g-4">
       {[
         {icon: 'users', value: '10,000+', text: 'Active Members', color: 'primary'},
@@ -140,7 +140,7 @@ const Explore = () => {
         {icon: 'shield-alt', value: '95%', text: 'Alert Accuracy', color: 'danger'}
       ].map((stat, index) => (
         <div className="col-md-3 col-6" key={index} data-aos="fade-up" data-aos-delay={index*100}>
-          <div className="p-4 bg-white rounded-3 shadow-sm stat-card h-100">
+          <div className="p-4 bg-white rounded-3 border border-1 border-danger shadow stat-card h-100">
             <i className={`fas fa-${stat.icon} fa-3x text-${stat.color} mb-3`}></i>
             <h3 className="fw-bold">{stat.value}</h3>
             <p className="text-muted mb-0">{stat.text}</p>
@@ -153,8 +153,8 @@ const Explore = () => {
 
 {/* How It Works Section */}
 <div className="how-it-works py-5">
-  <div className="container-fluid">
-    <h2 className="text-center text-white mb-5" data-aos="fade-down">How It Works</h2>
+  <div className="container">
+    <h2 className="text-center mb-5" data-aos="fade-down">How It Works</h2>
     <div className="row g-4">
       {[
         {icon: 'bell', title: 'Receive Alerts', text: 'Get instant notifications about incidents in your area', color: 'primary'},
@@ -162,7 +162,7 @@ const Explore = () => {
         {icon: 'hands-helping', title: 'Join Community', text: 'Interact with others through comments and shares', color: 'info'}
       ].map((step, index) => (
         <div className="col-md-4" key={index} data-aos="fade-up" data-aos-delay={index*150}>
-          <div className="text-center p-4 h-100 step-card">
+          <div className="text-center border border-1 border-danger shadow   p-4 h-100 step-card">
             <div className={`icon-wrapper bg-${step.color} text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-4`}>
               <i className={`fas fa-${step.icon} fa-2x`}></i>
             </div>

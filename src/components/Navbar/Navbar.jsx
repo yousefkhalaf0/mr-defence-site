@@ -10,19 +10,20 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
-  return (
-    <nav className={`navbar navbar-expand-lg ${styles.navbar}`}>
-      <div className="container">
+  return ( 
+    <nav className={`navbar fixed-top navbar-expand-lg ${styles.navbar}`}>
+      <div className="container-fluid">
         {/* Left: Logo + Site Name */}
         <NavLink className={`navbar-brand ${styles["navbar-brand"]}`} to="/">
           <img src={logo} alt="Logo" className={styles["brand-logo"]} />
-          Mr <strong>.Defence</strong>
+          Mr <strong>. Defence</strong>
         </NavLink>
 
         {/* Mobile toggle */}
         <button
           className={`navbar-toggler ${styles.navbarToggler}`}
           type="button"
+
           onClick={toggleNavbar}
         >
           <i
@@ -82,9 +83,21 @@ const Navbar = () => {
                     isActive ? styles.activeLink : ""
                   }`
                 }
-                to="/crime-responses"
+                to="/Explore"
               >
-                Crime Response's
+                Explore
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                className={({ isActive }) =>
+                  `nav-link ${styles["nav-link"]} ${
+                    isActive ? styles.activeLink : ""
+                  }`
+                }
+                to="/tutorials"
+              >
+                Tutorials
               </NavLink>
             </li>
             <li className="nav-item">
