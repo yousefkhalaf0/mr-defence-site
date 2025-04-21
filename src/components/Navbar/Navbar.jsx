@@ -23,7 +23,7 @@ const Navbar = () => {
         <button
           className={`navbar-toggler ${styles.navbarToggler}`}
           type="button"
- 
+
           onClick={toggleNavbar}
         >
           <i

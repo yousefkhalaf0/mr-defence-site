@@ -1,13 +1,21 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import styles from './About.module.css';
 import Carousel from './Carousel.jsx';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function About() {
+  useEffect(() => {
+    AOS.init({duration:1000, once:true})
+  }, [])
+  
   return (
     <>
     <div className="row m-0">
-        <div className={`py-5 ${styles.aboutText}`}>
-          <h1 className="title">About Us</h1>
+        <div className={`py-5 ${styles.aboutText}`}   
+>
+          <h1 className="title" data-aos="fade-down"
+  data-aos-delay="300">About Us</h1>
         </div>
 
       </div>
@@ -17,13 +25,13 @@ export default function About() {
 
         <div className={`  ${styles.aboutDoing} `}>
         <div className=' row p-5 '>
-        <div className="col-4">
+        <div className="col-4" data-aos="fade-right">
           <h2 className='text-dark'>
             What <span>We Do ?</span>
           </h2>
 
         </div>
-        <div className="col-8">
+        <div className="col-8" data-aos="fade-left">
           <p className={` ${styles.doingInfo}`}>
             We deliver advanced monitoring solutions for comprehensive crime management.
              Our platform empowers communities with crime data insights,
@@ -41,12 +49,12 @@ export default function About() {
       </div>
       {/* How it works */}
       <div className={` row text-center  ${styles.howItwork}`}>
-        <div>
-          <h2> How it works ?</h2>
-          <p className='pt-4'>Discover how to effectively use our portal to report crimes, respond to incidents, and access valuable crime statistics in Karachi.</p>
+        <div data-aos="fade-down">
+          <h2 > How it works ?</h2>
+          <p className='pt-4'>Discover how to effectively use our   to report crimes, respond to incidents, and access valuable crime statistics in Karachi.</p>
         </div>
         <div className="row g-4   ">
-        <div className={`col-lg-3  col-md-6 col-12 d-flex `}>
+        <div className={`col-lg-3  col-md-6 col-12 d-flex `} data-aos="fade-up" data-aos-delay="300">
           <div className={`${styles.card} w-100`}>
 <img src="/icons/aboutUser.svg" className='py-4' alt="" />
 
@@ -58,7 +66,7 @@ export default function About() {
           </div>
           
         </div>
-        <div className={`col-lg-3  col-md-6 col-12 d-flex `}>
+        <div className={`col-lg-3  col-md-6 col-12 d-flex `} data-aos="fade-up" data-aos-delay="500">
           <div className={`${styles.card} w-100`}>
 <img src="/icons/reportCrime.png" className='py-4' alt="" />
 
@@ -67,7 +75,7 @@ export default function About() {
         <br />
           </div>
         </div>
-        <div className={`col-lg-3  col-md-6 col-12 d-flex `}>
+        <div className={`col-lg-3  col-md-6 col-12 d-flex `}data-aos="fade-up" data-aos-delay="700">
           <div className={`${styles.card} w-100`}>
   <img src="/icons/briefcase.svg" className='py-4' alt="" />
           <h4  className=''>Response to Crimes</h4>
@@ -76,7 +84,7 @@ export default function About() {
        
           </div>
          </div>
-        <div className={`col-lg-3  col-md-6 col-12 d-flex `}>
+        <div className={`col-lg-3  col-md-6 col-12 d-flex `}data-aos="fade-up" data-aos-delay="900">
           <div className={`${styles.card} w-100`}>
    <img src="/icons/checkMark.svg" className='py-4' alt="" />
           <h4 className=''>View Crime Statistics</h4>
@@ -96,7 +104,7 @@ export default function About() {
     {/* <img src="/imgs/about2.png" className='w-100 ' alt="What we do" /> */}
     
     
-      <h1>Good Life Begins With 
+      <h1 data-aos="fade-up" >Good Life Begins With 
         <br />
       A Safe Community</h1>
     
@@ -104,7 +112,7 @@ export default function About() {
 </div>
 {/* enhancing community */}
 <div className={`row d-flex align-items-center ${styles.enhancing}`}>
-    <div className="col-md-3 col-6 ">
+    <div className="col-md-3 col-6 " data-aos="fade-right" data-aos-delay="300">
       <img src="/imgs/enhance2.png" className='w-100' alt="" />
     </div>
     <div className="col-md-3 col-6 ">
@@ -112,7 +120,7 @@ export default function About() {
       <img src="/imgs/enhance3.png" className='w-100' alt="" />
     </div>
   
-  <div className="col-md-6 col-12 ps-lg-4 pt-md-5 pt-lg-0 ">
+  <div className="col-md-6 col-12 ps-lg-4 pt-md-5 pt-lg-0 " data-aos="fade-left" data-aos-delay="300">
     <div>
     <h2>Enhancing Community <br /><span>Safety Together</span></h2>
     <p className='py-2'>In our shared mission to enhance community safety,
@@ -120,23 +128,23 @@ export default function About() {
        and local organizations can create a proactive approach to crime prevention. </p>
     </div>
     <div className='row g-4'>
-    <div className="col-6 d-flex ">
+    <div className="col-6 d-flex " data-aos="fade-right" data-aos-delay="300">
       <div className='d-flex justify-content-center align-items-center'>
           <img src="icons/enhance1.svg" alt="" /> 
         <p className='fw-bolder'>Safe & Secure Community</p>
       </div>
       
-      </div><div className="col-6 d-flex py-3  ">
+      </div><div className="col-6 d-flex py-3  " data-aos="fade-left" data-aos-delay="300">
         <div className='d-flex justify-content-center align-items-center'><img src="icons/enhance2.svg" alt="" /> 
         <p className='fw-bolder'>Registering Complaints</p></div>
         
-      </div><div className="col-6 d-flex  ">
+      </div><div className="col-6 d-flex  " data-aos="fade-right" data-aos-delay="500">
         <div className='d-flex justify-content-center align-items-center'>
           <img src="icons/enhance3.svg" alt="" /> 
         <p className='fw-bolder'>Response Optimization</p>
         </div>
         
-      </div><div className="col-6 d-flex">
+      </div><div className="col-6 d-flex" data-aos="fade-left" data-aos-delay="500">
         <div className='d-flex justify-content-center align-items-center'>
                  <img src="icons/enhance4.svg" alt="" /> 
         <p className='fw-bolder'>Predictive Policing Solutions</p>
@@ -151,8 +159,8 @@ export default function About() {
 </div>
 {/* News and Blog */}
 
-<div className={`${styles.blog} row text-center`}>
-<div>
+<div className={`${styles.blog} row text-center pt-2`}>
+<div data-aos="fade-up" data-aos-delay="300">
           <h2> News and Blog </h2>
          <p className='py-3'>Crime in Karachi: What’s Happening Now?</p>
         </div>
