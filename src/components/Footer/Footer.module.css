@@ -1,6 +1,40 @@
-.footer{
-    background-image: linear-gradient(to right,#1E1E1E, #101828 );
-    color:azure;
-    text-align: center;
-    
+.footStyle {
+  /* background-color: #0e1217; */
+  background-image: linear-gradient(to top, #263238, #6A8CA4);
+
+  color: white;
+  padding: 3rem 0;
+}
+
+.footerImg {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-bottom: 0.8rem;
+}
+
+.footerStyle {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.footerStyle:hover {
+  text-decoration: underline;
+  color: #fff;
+  font-weight: 500;
+}
+
+.small {
+  margin-top: 20px !important;
+  color: silver;
+  line-height: 30px;
+}
+.footinput{
+  background-color: transparent;
+}
+.footinput::placeholder{
+  color: silver;
 }
