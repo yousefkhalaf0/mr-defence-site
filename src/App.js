@@ -15,6 +15,7 @@ import Explore from "./components/Explore/Explore";
 let router = createBrowserRouter([
   {
     path: "/",
+    
     element: <Layout />,
     children: [
       { index: true, element: <Home /> },
