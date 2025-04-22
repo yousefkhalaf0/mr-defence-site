@@ -50,6 +50,12 @@ url('/public/imgs/hero.jpg') center/cover no-repeat;
   .blog{
     background-color: #e0e0e0;
   }
+  /* RecentCrimes  section */
+
+  .RecentCrimes{
+    background-color: #e0e0e0;
+    padding: 30px 15px;
+  }
   
   
 

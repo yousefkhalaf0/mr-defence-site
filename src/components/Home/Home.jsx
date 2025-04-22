@@ -1,6 +1,7 @@
 import React, { useEffect,useState } from 'react';
 import styles from './Home.module.css';
-import Carousel from '../About/Carousel'
+import Carousel from '../About/Carousel';
+import RecentCrimes from './RecentCrimes.jsx';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -88,6 +89,11 @@ const Home = () => {
           </div>
         </div>
       </section>
+      {/* RecentCrimes section */}
+      <section className={`${styles.RecentCrimes}`}>
+         <RecentCrimes/>
+      </section>
+     
 
       {/* Enhancing section */}
       <div className={`container-fluid ${styles.enhancing}`}>
