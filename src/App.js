@@ -14,6 +14,7 @@ import Premium from "./components/Premium/Premium";
 import Support from "./components/Support/Support";
 import Notfound from "./components/Notfound/Notfound";
 import Explore from "./components/Explore/Explore";
+import Tutorials from './components/Tutorials/Tutorials';
 
 let router = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ let router = createBrowserRouter([
       { path: "premium", element: <Premium /> },
       { path: "support", element: <Support /> },
       { path: "explore", element: <Explore /> },
+      { path: "tutorials", element: <Tutorials /> },
       { path: "*", element: <Notfound /> },
     ],
   },

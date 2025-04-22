@@ -1,0 +1,304 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "title": "Self Defense",
+      "description": "Learn how to protect yourself in dangerous situations.",
+      "icon": "FaShieldAlt",
+      "tutorials": [
+        {
+          "id": 101,
+          "title": "Basic Self Defense Techniques",
+          "type": "video",
+          "source": "YouTube",
+          "url": "https://www.youtube.com/watch?v=UV78YzM-gGQ",
+          "thumbnail": "https://img.youtube.com/vi/UV78YzM-gGQ/0.jpg",
+          "description": "Learn simple yet effective self defense moves everyone should know."
+        },
+        {
+          "id": 102,
+          "title": "How to Escape Holds",
+          "type": "video",
+          "source": "YouTube",
+          "url": "https://www.youtube.com/watch?v=hMESzGWGV7M",
+          "thumbnail": "https://img.youtube.com/vi/hMESzGWGV7M/0.jpg",
+          "description": "Tutorial on how to escape common holds used in attacks."
+        },
+        {
+          "id": 103,
+          "title": "10 Self Defense Tips Everyone Should Know",
+          "type": "article",
+          "source": "WikiHow",
+          "url": "https://www.wikihow.com/Defend-Yourself",
+          "thumbnail": "https://www.doersempire.com/wp-content/uploads/2019/06/12-basic-self-defence-tips-everyone-should-know-about.jpg",
+          "description": "A step-by-step illustrated guide to basic self-defense."
+        },
+        {
+          "id": 104,
+          "title": "Self Defense Starter Kit",
+          "type": "article",
+          "source": "Teen Vogue",
+          "url": "https://www.teenvogue.com/story/self-defense-starter-kit",
+          "thumbnail": "https://www.americancontingency.com/wp-content/uploads/2023/12/self_defense_web-1024x576.jpg",
+          "description": "Empowering women with techniques for verbal de-escalation and physical defense."
+        },
+      
+        {
+          "id": 105,
+          "title": "The Most Powerful Self Defence Techniques",
+          "type": "video",
+          "source": "YouTube",
+          "url": "https://www.youtube.com/watch?v=OU9nlBKKPmI",
+          "thumbnail": "https://img.youtube.com/vi/OU9nlBKKPmI/0.jpg",
+          "description": "Demonstration of effective self-defense techniques."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Natural Disaster Preparedness",
+      "description": "Prepare for emergencies like earthquakes, fires, and floods.",
+      "icon": "WiDayStormShowers",
+      "tutorials": [
+        {
+          "id": 201,
+          "title": "What to Do During an Earthquake",
+          "type": "article",
+          "source": "Ready.gov",
+          "url": "https://www.ready.gov/earthquakes",
+          "thumbnail": "https://www.montana.edu/emergency/images/step5wideicon.png",
+          "description": "Government guide on how to react during an earthquake."
+        },
+        {
+          "id": 202,
+          "title": "How to Prepare a Go-Bag",
+          "type": "video",
+          "source": "YouTube",
+          "url": "https://www.youtube.com/watch?v=yLRiv3DVXy4",
+          "thumbnail": "https://img.youtube.com/vi/yLRiv3DVXy4/0.jpg",
+          "description": "Essential items to pack for emergencies."
+        },
+        {
+          "id": 203,
+          "title": "Flood Safety Tips",
+          "type": "article",
+          "source": "CDC",
+          "url": "https://www.cdc.gov/disasters/floods/readiness.html",
+          "thumbnail": "https://i.ytimg.com/vi/u4qhRfy9qIE/maxresdefault.jpg",
+          "description": "How to stay safe before, during, and after a flood."
+        },
+        {
+          "id": 204,
+          "title": "Disaster Preparedness: What You Need to Know",
+          "type": "video",
+          "source": "YouTube",
+          "url": "https://www.youtube.com/watch?v=yLRiv3DVXy4",
+          "thumbnail": "https://img.youtube.com/vi/yLRiv3DVXy4/0.jpg",
+          "description": "Online training to help you prepare for emergencies and disasters."
+        },
+        {
+          "id": 205,
+          "title": "Creating an Emergency Plan",
+          "type": "article",
+          "source": "Egyptian Red Crescent",
+          "url": "https://www.ready.gov/business/emergency-plans/emergency-response-plan?utm_source=chatgpt.com",
+          "thumbnail": "https://egyptianrc.org/storage/0_g1_99affee4.jpg",
+          "description": "The Egyptian Red Crescent guide to organizing family emergency response."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Civil Emergency Response",
+      "description": "How to stay safe during civil unrest, shootings, or transport accidents.",
+      "icon": "MdOutlineEmergency",
+      "tutorials": [
+        {
+          "id": 301,
+          "title": "Active Shooter Safety",
+          "type": "article",
+          "source": "FEMA",
+          "url": "https://www.dhs.gov/active-shooter-preparedness",
+          "thumbnail": "https://ilt-2021.s3.amazonaws.com/wp-content/uploads/2022/07/29171334/active-shooter-response.jpg",
+          "description": "Learn how to protect yourself during an active shooter situation."
+        },
+        {
+          "id": 302,
+          "title": "Public Transport Emergency Tips",
+          "type": "video",
+          "source": "YouTube",
+          "url": "https://www.youtube.com/watch?v=yLRiv3DVXy4",
+          "thumbnail": "https://img.youtube.com/vi/yLRiv3DVXy4/0.jpg",
+          "description": "What to do if something goes wrong on public transport."
+        },
+        {
+          "id": 303,
+          "title": "How to Respond to Civil Unrest",
+          "type": "article",
+          "source": "IFRC",
+          "url": "https://www.ifrc.org/article/how-stay-safe-during-civil-unrest",
+          "thumbnail": "https://tse3.mm.bing.net/th/id/OIP.P3ywK48uC5wG4wdH_cK9fAHaEK?rs=1&pid=ImgDetMain.jpg",
+          "description": "Advice on what to do if you're caught in public disruptions."
+        },
+        {
+          "id": 304,
+          "title": "How to Shelter in Place",
+          "type": "article",
+          "source": "Ready.gov",
+          "url": "https://www.ready.gov/shelter",
+          "thumbnail": "https://preparedbee.com/cdn/shop/articles/pexels-photo-8130842.jpg?v=1673597309",
+          "description": "Learn what sheltering in place means and how to prepare."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "First Aid Basics",
+      "description": "Essential first aid skills that everyone should know.",
+      "icon": "FaHeartbeat",
+      "tutorials": [
+        {
+          "id": 401,
+          "title": "How to Perform CPR",
+          "type": "video",
+          "source": "YouTube",
+          "url": "https://www.youtube.com/watch?v=khzRoaSmkNo&t=11s",
+          "thumbnail": "https://img.youtube.com/vi/khzRoaSmkNo/0.jpg",
+          "description": "Learn how to give CPR in emergencies."
+        },
+        {
+          "id": 402,
+          "title": "Treating Burns and Wounds",
+          "type": "article",
+          "source": "Egyptian Red Crescent",
+          "url": "https://www.egyptianrc.org/",
+          "thumbnail": "https://images.pexels.com/photos/6519905/pexels-photo-6519905.jpeg?auto=compress&cs=tinysrgb&w=600",
+          "description": "First aid steps to treat burns and wounds, adapted from Egyptian Red Crescent resources."
+        },
+        {
+          "id": 403,
+          "title": "How to Help Someone Who's Choking",
+          "type": "article",
+          "source": "St John Ambulance",
+          "url": "https://www.sja.org.uk/get-advice/first-aid-advice/choking/",
+          "thumbnail": "https://images.pexels.com/photos/4584376/pexels-photo-4584376.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+          "description": "Step-by-step guide to help someone who's choking."
+        },
+        {
+          "id": 404,
+          "title": "First Aid for Broken Bones",
+          "type": "video",
+          "source": "YouTube",
+          "url": "https://www.youtube.com/watch?v=H7XOfBlLtWM",
+          "thumbnail": "https://img.youtube.com/vi/H7XOfBlLtWM/0.jpg",
+          "description": "Learn how to deal with bone fractures before help arrives."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Digital Safety & Awareness",
+      "description": "Protect yourself online and avoid scams or harassment.",
+      "icon": "FaUserShield",
+      "tutorials": [
+        {
+          "id": 501,
+          "title": "How to Create Strong Passwords",
+          "type": "article",
+          "source": "Google Safety",
+          "url": "https://safety.google/security-tips/",
+          "thumbnail": "https://media.istockphoto.com/id/2165934625/photo/business-people-are-protecting-personal-data-on-laptops-and-virtual-interfaces-cyber-security.jpg?s=1024x1024&w=is&k=20&c=AFXySfLmCfFNKNMDwr2KdSpcjAjXZG-Z8P-gxF4yaYg=",
+          "description": "Tips from Google on staying safe online."
+        },
+        {
+          "id": 502,
+          "title": "Avoiding Online Scams",
+          "type": "video",
+          "source": "YouTube",
+          "url": "https://www.youtube.com/watch?v=ObgLu9wCqqY​",
+          "thumbnail": " https://img.youtube.com/vi/ObgLu9wCqqY/0.jpg",
+          "description": "Common signs of online fraud and how to report them."
+        },
+        {
+          "id": 503,
+          "title": "How to Spot Phishing Emails",
+          "type": "article",
+          "source": "CyberAware",
+          "url": "https://www.cyberaware.gov.uk/phishing",
+          "thumbnail": "https://images.pexels.com/photos/6963098/pexels-photo-6963098.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+          "description": "How to recognize and avoid phishing email attacks."
+        },
+        {
+          "id": 504,
+          "title": "Protecting Kids Online",
+          "type": "article",
+          "source": "NSPCC",
+          "url": "https://www.nspcc.org.uk/keeping-children-safe/online-safety/",
+          "thumbnail": "https://images.pexels.com/photos/4145243/pexels-photo-4145243.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+          "description": "Tips for parents to help keep children safe while using the internet."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Egyptian Red Crescent Initiatives",
+      "description": "Learn about local emergency programs and training in Egypt.",
+      "icon": "FaHandsHelping",
+      "tutorials": [
+        {
+          "id": 601,
+          "title": "About the Egyptian Red Crescent",
+          "type": "article",
+          "source": "EgyptianRC.org",
+          "url": "https://www.egyptianrc.org/Arabic/about-us/mission-and-vision",
+          "thumbnail": "https://images.pexels.com/photos/1198171/pexels-photo-1198171.jpeg?auto=compress&cs=tinysrgb&w=600",
+          "description": "An overview of the mission, services, and emergency response activities of the Egyptian Red Crescent."
+        },
+        {
+          "id": 602,
+          "title": "‘With Your Hands, You Save Lives’ Initiative",
+          "type": "article",
+          "source": "Youm7",
+          "url": "https://www.youm7.com/story/2024/12/2/وزيرة-التضامن-تدشن-مبادرة-الهلال-الأحمر-المصري-لرفع-الوعى-بالإسعافات/6798081",
+          "thumbnail": "https://tse2.mm.bing.net/th?id=OIP.Ydd_MGGuOJWxYTlUKA-pKQHaE8&pid=Api",
+          "description": "A national campaign to train women leaders across Egypt in first aid techniques led by the Egyptian Red Crescent."
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Fire Safety & Handling Fires",
+      "description": "Learn how to identify fire types and the proper ways to handle them.",
+      "icon": "FaFireExtinguisher",
+      "tutorials": [
+        {
+          "id": 701,
+          "title": "Types of Fires and How to Handle Them",
+          "type": "article",
+          "source": "Annajah.net",
+          "url": "https://www.annajah.net/أنواع-الحرائق-وطُرق-إخمادها-article-16761",
+          "thumbnail": "https://images.pexels.com/photos/30805406/pexels-photo-30805406.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+          "description": "An overview of fire classifications and the methods to extinguish them."
+        },
+        {
+          "id": 702,
+          "title": "How to Choose the Right Fire Extinguisher",
+          "type": "article",
+          "source": "Firex Egypt",
+          "url": "https://www.firexegypt.com/ar/blog/fire-safety.html",
+          "thumbnail": "https://th.bing.com/th/id/R.1d8a6ad8b9cf59c6125f11acbd0e0029?rik=ebD8F%2bo9GtiKfg&riu=http%3a%2f%2fwww.aegis4training.com%2fwp-content%2fuploads%2f2015%2f11%2fFire-Extinguisher.jpg&ehk=U4wqNUijVX1nMm%2ffDA4VFkfHOe97hjWe9Ho0NZ2H948%3d&risl=&pid=ImgRaw&r=0",
+          "description": "A guide to understanding fire extinguishers and how to choose the right one for different types of fires."
+        },
+        {
+          "id": 703,
+          "title": "Fire Safety Tips",
+          "type": "video",
+          "source": "YouTube",
+          "url": "https://youtu.be/4eX4DlNLrsI​",
+          "thumbnail": "https://tse3.mm.bing.net/th/id/OIP.SsNKEB9r7-XPay5hXOAUPwHaE8?w=2560&h=1707&rs=1&pid=ImgDetMain​",
+          "description": "General fire safety tips for protecting your home and workplace."
+        }
+      ]
+    }
+  ]
+}
