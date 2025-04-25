@@ -15,6 +15,8 @@ import Support from "./components/Support/Support";
 import Notfound from "./components/Notfound/Notfound";
 import Explore from "./components/Explore/Explore";
 import Tutorials from './components/Tutorials/Tutorials';
+import CrimeReports from './components/crime-reports/CrimeReports';
+
 
 let router = createBrowserRouter([
   {
@@ -29,6 +31,8 @@ let router = createBrowserRouter([
       { path: "support", element: <Support /> },
       { path: "explore", element: <Explore /> },
       { path: "tutorials", element: <Tutorials /> },
+      { path: "CrimeReports", element: <CrimeReports /> },
+
       { path: "*", element: <Notfound /> },
     ],
   },

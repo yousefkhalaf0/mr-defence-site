@@ -1,0 +1,48 @@
+.crimeMapContainer {
+  background: #f9f9f9;
+  padding: 30px;
+  border-radius: 12px;
+  margin-top: 30px;
+}
+
+.filters {
+  margin-bottom: 20px;
+}
+
+.mapWrapper {
+  margin-top: 20px;
+}
+
+.legend {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+  font-size: 14px;
+}
+
+.legend h5 {
+  margin-bottom: 10px;
+}
+
+.dot {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.low {
+  background-color: green;
+}
+
+.medium {
+  background-color: orange;
+}
+
+.high {
+  background-color: red;
+}

@@ -71,7 +71,7 @@ const Navbar = () => {
                     isActive ? styles.activeLink : ""
                   }`
                 }
-                to="/crime-reports"
+                to="/CrimeReports"
               >
                 Crime Reports
               </NavLink>

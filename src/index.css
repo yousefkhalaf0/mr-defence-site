@@ -13,6 +13,8 @@ code {
 }
 /* navbar */
 
+
+
 .navbar .nav-link {
   text-transform: uppercase;
   color: silver;
@@ -28,4 +30,26 @@ code {
   text-shadow: 1px 1px 4px #edfeff;
 
   
+}
+
+.navbar-toggler {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+  color: white !important;
+}
+
+/* لما يتضغط عليه أو يكون عليه focus */
+.navbar-toggler:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.navbar-toggler:hover {
+  color: white !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
