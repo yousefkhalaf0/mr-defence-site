@@ -1,234 +1,303 @@
 import React, { useEffect, useState } from 'react';
-import data from './data.json';
 import {
   FaShieldAlt,
-  FaExclamationTriangle,
-  FaFirstAid,
-  FaLock,
-  FaHandsHelping,
   FaFireExtinguisher,
+  FaFirstAid,
+  FaHandsHelping,
   FaChevronLeft,
-  FaChevronRight,
-  FaEllipsisH
+  FaChevronRight
 } from 'react-icons/fa';
 import { WiDayStormShowers } from 'react-icons/wi';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase';
+import { motion } from 'framer-motion';
 import './Tutorial.css';
 
-const iconComponents = {
-  1: FaShieldAlt,
-  2: WiDayStormShowers,
-  3: FaExclamationTriangle,
-  4: FaFirstAid,
-  5: FaLock,
-  6: FaHandsHelping,
-  7: FaFireExtinguisher
+const iconMap = {
+  FaShieldAlt: FaShieldAlt,
+  FaFireExtinguisher: FaFireExtinguisher,
+  WiDayStormShowers: WiDayStormShowers,
+  FaFirstAid: FaFirstAid,
+  FaHandsHelping: FaHandsHelping
 };
 
-const colorsMap = {
+const categoryColors = {
   1: '#E63946',
   2: '#457B9D',
   3: '#F4A261',
   4: '#2A9D8F',
-  5: '#264653',
-  6: '#8D99AE',
-  7: '#E76F51'
+  5: '#264653'
 };
 
-export default function Tutorials2() {
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 }
+};
+
+export default function Tutorials() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [categories, setCategories] = useState([]);
+  const [tutorials, setTutorials] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [tutorialsPerPage] = useState(3); // عرض 3 عناصر فقط في كل صفحة
+  const [tutorialsPerPage] = useState(3);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
+  // Fetch main categories
   useEffect(() => {
-    setCategories(data.categories);
+    const fetchCategories = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'tutorials'));
+        const loadedCategories = [];
+
+        querySnapshot.forEach((doc) => {
+          loadedCategories.push({
+            id: doc.id,
+            ...doc.data()
+          });
+        });
+
+        setCategories(loadedCategories);
+        setLoading(false);
+      } catch (err) {
+        console.error("Firestore fetch error:", err);
+        setError('Failed to load categories. Please try again.');
+        setLoading(false);
+      }
+    };
+
+    fetchCategories();
   }, []);
 
-  // Pagination Logic
+  // Fetch tutorials when a category is selected
+  useEffect(() => {
+    const fetchTutorials = async () => {
+      if (!selectedCategory) return;
+
+      try {
+        setLoading(true);
+        const tutorialsRef = collection(db, 'tutorials', selectedCategory.id, 'tutorials');
+        const querySnapshot = await getDocs(tutorialsRef);
+
+        const loadedTutorials = [];
+        querySnapshot.forEach((doc) => {
+          loadedTutorials.push({
+            id: doc.id,
+            ...doc.data()
+          });
+        });
+
+        setTutorials(loadedTutorials);
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching tutorials:", err);
+        setError('Failed to load tutorials. Please try again.');
+        setLoading(false);
+      }
+    };
+
+    fetchTutorials();
+  }, [selectedCategory]);
+
+  // Pagination
   const indexOfLastTutorial = currentPage * tutorialsPerPage;
   const indexOfFirstTutorial = indexOfLastTutorial - tutorialsPerPage;
-  const currentTutorials = selectedCategory?.tutorials?.slice(indexOfFirstTutorial, indexOfLastTutorial) || [];
-  const totalPages = Math.ceil(selectedCategory?.tutorials?.length / tutorialsPerPage) || 0;
+  const currentTutorials = tutorials.slice(indexOfFirstTutorial, indexOfLastTutorial);
+  const totalPages = Math.ceil(tutorials.length / tutorialsPerPage);
 
-  // شرط عرض الـ Pagination: يجب أن يكون هناك 3 عناصر أو أكثر
-  const shouldShowPagination = selectedCategory?.tutorials?.length >= 3;
+  const changePage = (pageNumber) => setCurrentPage(pageNumber);
+  const nextPage = () => currentPage < totalPages && setCurrentPage(currentPage + 1);
+  const prevPage = () => currentPage > 1 && setCurrentPage(currentPage - 1);
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  const nextPage = () => setCurrentPage(prev => Math.min(prev + 1, totalPages));
-  const prevPage = () => setCurrentPage(prev => Math.max(prev - 1, 1));
+  if (loading) {
+    return (
+      <div className="tutorials-container text-center py-5">
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
+  }
 
-  const getPageNumbers = () => {
-    const pageNumbers = [];
-    const maxVisiblePages = 5; // عدد الصفحات المرئية في ال Pagination
-    
-    if (totalPages <= maxVisiblePages) {
-      for (let i = 1; i <= totalPages; i++) {
-        pageNumbers.push(i);
-      }
-    } else {
-      const half = Math.floor(maxVisiblePages / 2);
-      let start = currentPage - half;
-      let end = currentPage + half;
-      
-      if (start < 1) {
-        start = 1;
-        end = maxVisiblePages;
-      }
-      
-      if (end > totalPages) {
-        end = totalPages;
-        start = totalPages - maxVisiblePages + 1;
-      }
-      
-      if (start > 1) {
-        pageNumbers.push(1);
-        if (start > 2) {
-          pageNumbers.push('ellipsis-start');
-        }
-      }
-      
-      for (let i = start; i <= end; i++) {
-        pageNumbers.push(i);
-      }
-      
-      if (end < totalPages) {
-        if (end < totalPages - 1) {
-          pageNumbers.push('ellipsis-end');
-        }
-        pageNumbers.push(totalPages);
-      }
-    }
-    
-    return pageNumbers;
-  };
+  if (error) {
+    return (
+      <div className="tutorials-container text-center py-5 text-danger">
+        {error}
+      </div>
+    );
+  }
 
   return (
     <div className="tutorials-container py-5">
       <div className="container">
-        <h2 className="text-center mb-5 fw-bold section-title">Explore Our Tutorials</h2>
-        
+        <h2 className="text-center mb-5 fw-bold">Explore Our Tutorials</h2>
+
         {!selectedCategory ? (
           <div className="row g-4">
-            {categories.map(cat => {
-              const Icon = iconComponents[cat.id];
+            {categories.map((category, index) => {
+              const Icon = iconMap[category.icon] || FaShieldAlt;
               return (
-                <div className="col-lg-4 col-md-6" key={cat.id}>
+                <motion.div
+                  className="col-lg-4 col-md-6"
+                  key={category.id}
+                  initial="hidden"
+                  animate="visible"
+                  variants={cardVariants}
+                  transition={{ delay: index * 0.1 }}
+                >
                   <div
-                    className="card category-card text-center p-4 h-100"
-                    onClick={() => {
-                      setSelectedCategory(cat);
-                      setCurrentPage(1); // إعادة تعيين الصفحة عند اختيار فئة جديدة
-                    }}
+                    className="category-card"
+                    onClick={() => setSelectedCategory(category)}
                   >
-                    <div className="category-icon mb-3">
-                      <Icon
-                        style={{
-                          color: colorsMap[cat.id],
-                          fontSize: '2.5rem',
-                          transition: 'all 0.3s ease'
-                        }}
-                      />
+                    <div className="category-icon">
+                      <Icon style={{ color: categoryColors[category.id.split('_')[1]] }} />
                     </div>
-                    <h5 className="mb-2 fw-semibold card-title">{cat.title}</h5>
-                    <p className="text-muted card-description">{cat.description}</p>
-                    <div className="hover-indicator" style={{ backgroundColor: colorsMap[cat.id] }}></div>
+                    <h3>{category.title}</h3>
+                    <p>{category.description}</p>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
         ) : (
-          <div className="tutorials-detail">
+          <motion.div
+            className="tutorials-detail"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          >
             <button
-              className="btn back-button mb-4 d-flex align-items-center"
+              className="back-button"
               onClick={() => {
                 setSelectedCategory(null);
-                setCurrentPage(1); // إعادة تعيين الصفحة عند الرجوع
+                setTutorials([]);
+                setCurrentPage(1);
               }}
             >
-              <FaChevronLeft className="me-2" /> Back to Categories
+              <FaChevronLeft /> Back to Categories
             </button>
-            
-            <div className="category-header mb-4">
-              <div className="category-icon-lg mb-3" style={{ backgroundColor: colorsMap[selectedCategory.id] }}>
-                {React.createElement(iconComponents[selectedCategory.id], { 
-                  style: { color: 'white', fontSize: '1.8rem' } 
-                })}
-              </div>
-              <h4 className="fw-bold category-title">{selectedCategory.title}</h4>
-              <p className="category-description">{selectedCategory.description}</p>
-            </div>
-            
-            <div className="row g-4 mb-4">
-              {currentTutorials.map(tut => (
-                <div className="col-lg-4 col-md-6" key={tut.id}>
-                  <div className="card tutorial-card h-100">
-                    <div className="thumbnail-container">
-                      <img
-                        src={tut.thumbnail}
-                        className="card-img-top"
-                        alt={tut.title}
-                      />
-                    </div>
-                    <div className="card-body">
-                      <h6 className="fw-bold tutorial-title">{tut.title}</h6>
-                      <p className="text-muted tutorial-description">{tut.description}</p>
-                    </div>
-                    <div className="card-footer bg-transparent border-0">
-                      <a
-                        href={tut.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn btn-primary view-button"
-                      >
-                        View {tut.type}
-                      </a>
-                    </div>
-                  </div>
+
+            <div className="category-header p-4 text-center shadow-sm" style={{ marginBottom: '2rem' }}>
+              <div className="category-title" style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent:'center',
+                gap: '1rem',
+                marginBottom: '0.5rem'
+              }}>
+                <div
+                  className="category-icon-lg"
+                  style={{
+                    backgroundColor: categoryColors[selectedCategory.id.split('_')[1]],
+                    width: '50px',
+                    height: '50px',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0
+                  }}
+                >
+                  {React.createElement(iconMap[selectedCategory.icon], {
+                    style: {
+                      color: 'white',
+                      fontSize: '1.25rem'
+                    }
+                  })}
                 </div>
-              ))}
+                <h2 style={{
+                  margin: 0,
+                  fontSize: '1.5rem',
+                  fontWeight: 600,
+                  color: '#333'
+                }}>{selectedCategory.title}</h2>
+              </div>
+              <p className="category-description" style={{
+                margin: 0,
+                color: '#666',
+                lineHeight: 1.6,
+                textAlign: 'center',
+                paddingLeft: 'calc(200px + 1rem)'   
+              }}>
+                {selectedCategory.description}
+              </p>
             </div>
-            
-            {/* Pagination Component - يظهر فقط إذا كان هناك 3 عناصر أو أكثر */}
-            {shouldShowPagination && totalPages > 1 && (
-              <nav className="pagination-container">
-                <ul className="pagination">
-                  <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
-                    <button className="page-link" onClick={prevPage} disabled={currentPage === 1}>
+
+            {tutorials.length === 0 ? (
+              <div className="no-tutorials">
+                <p>No tutorials available for this category.</p>
+              </div>
+            ) : (
+              <>
+                <div className="tutorials-grid">
+                  {currentTutorials.map((tutorial) => (
+                    <motion.div
+                      className="tutorial-card"
+                      key={tutorial.id}
+                      whileHover={{ scale: 1.03 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                    >
+                      <div className="card-image-container">
+                        <img
+                          src={tutorial.thumbnail}
+                          alt={tutorial.title}
+                          onError={(e) => {
+                            e.target.src = 'https://via.placeholder.com/300x180?text=Thumbnail+Not+Available';
+                          }}
+                        />
+                        <div className="card-overlay">
+                          <a
+                            href={tutorial.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="view-button"
+                          >
+                            View {tutorial.type === 'video' ? 'Video' : 'Article'}
+                          </a>
+                        </div>
+                      </div>
+                      <div className="card-content">
+                        <h4>{tutorial.title}</h4>
+                        <p>{tutorial.description}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {totalPages > 1 && (
+                  <div className="pagination-container">
+                    <button
+                      className="pagination-button"
+                      onClick={prevPage}
+                      disabled={currentPage === 1}
+                    >
                       <FaChevronLeft />
                     </button>
-                  </li>
-                  
-                  {getPageNumbers().map((number, index) => (
-                    <React.Fragment key={index}>
-                      {number === 'ellipsis-start' || number === 'ellipsis-end' ? (
-                        <li className="page-item disabled">
-                          <span className="page-link ellipsis">
-                            <FaEllipsisH />
-                          </span>
-                        </li>
-                      ) : (
-                        <li className={`page-item ${currentPage === number ? 'active' : ''}`}>
-                          <button 
-                            className="page-link" 
-                            onClick={() => paginate(number)}
-                          >
-                            {number}
-                          </button>
-                        </li>
-                      )}
-                    </React.Fragment>
-                  ))}
-                  
-                  <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
-                    <button className="page-link" onClick={nextPage} disabled={currentPage === totalPages}>
+
+                    <div className="page-numbers">
+                      {Array.from({ length: totalPages }, (_, i) => i + 1).map((number) => (
+                        <button
+                          key={number}
+                          className={`page-number ${currentPage === number ? 'active' : ''}`}
+                          onClick={() => changePage(number)}
+                        >
+                          {number}
+                        </button>
+                      ))}
+                    </div>
+
+                    <button
+                      className="pagination-button"
+                      onClick={nextPage}
+                      disabled={currentPage === totalPages}
+                    >
                       <FaChevronRight />
                     </button>
-                  </li>
-                </ul>
-              </nav>
+                  </div>
+                )}
+              </>
             )}
-          </div>
+          </motion.div>
         )}
       </div>
     </div>

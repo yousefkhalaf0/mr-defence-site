@@ -8,7 +8,7 @@ import styles from "./CrimeReports.module.css";
 import { FaSearch, FaFilter, FaMapMarkerAlt } from "react-icons/fa";
 import CrimeMap from "./CrimeMap";
 import CrimeStats from "./CrimeStats";
-import CrimeBreakdown from "./CrimeBreakdown";
+import ReportsTable from "./CrimeBreakdown";
 import CrimeTrends from "./CrimeTrends.jsx";
 import RecentCrimes from "../Home/RecentCrimes"; 
 
@@ -144,7 +144,7 @@ const CrimeReports = () => {
             </button>
           </div>
           <div className="card-body">
-            {/* <CrimeBreakdown reports={reports} /> */}
+            <ReportsTable />
           </div>
         </div>
       </div>
