@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
-import './EmailVerification.css'; // Assuming you have a CSS file for styling
+ import React, { useState } from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import confetti from 'canvas-confetti';
+import './EmailVerification.css';
 
 const Login = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -55,16 +62,63 @@ const Login = () => {
     return !Object.values(errors).some(error => error);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (validateForm()) {
-      console.log('Form submitted:', formData);
-      alert('Login successful!');
+      try {
+        await signInWithEmailAndPassword(auth, formData.email, formData.password);
+
+        // تأثير الكونفيتي عند النجاح 🎊
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+
+        // إشعار Toast مخصص
+        toast.success(
+          <div>
+            <h3>✨ Welcome Back!</h3>
+            <p>You've logged in successfully.</p>
+          </div>,
+          {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "colored",
+            style: {
+              background: "linear-gradient(to right, #4CAF50, #2E7D32)"
+            }
+          }
+        );
+
+        setTimeout(() => navigate('/dashboard'), 3000);
+
+      } catch (error) {
+        toast.error(
+          error.message.includes('user-not-found') || error.message.includes('wrong-password')
+            ? 'Incorrect email or password. Please try again.'
+            : error.message,
+          {
+            position: "top-center",
+            theme: "colored",
+            style: {
+              background: "#ff4444"
+            }
+          }
+        );
+      }
     }
   };
 
   return (
     <div className="auth-container">
+      <ToastContainer />
+
       <div className="auth-wrapper">
         <div className="left-section">
           <img 
@@ -114,7 +168,7 @@ const Login = () => {
                   <input type="checkbox" id="remember" />
                   <label htmlFor="remember">Remember me</label>
                 </div>
-                <a href="/forgot-password" className="forgot-password">Forgot password?</a>
+                 
               </div>
 
               <button type="submit" className="auth-button">Login</button>

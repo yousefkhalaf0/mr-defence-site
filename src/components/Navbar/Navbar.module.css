@@ -48,3 +48,16 @@
   font-size: 1.5rem;
   color: white;
 }
+.userIconButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ffffff; /* لون الايقونة */
+  font-size: 1.8rem; /* حجم الايقونة */
+  transition: color 0.3s ease;
+  margin-left: 10px;
+}
+
+.userIconButton:hover {
+  color: #ffc107; /* لون لما تقف بالماوس */
+}

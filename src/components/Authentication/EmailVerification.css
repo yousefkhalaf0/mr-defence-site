@@ -193,3 +193,26 @@
       padding: 2rem 1.5rem;
     }
   }
+  /* Toastify Custom Styles */
+.Toastify__toast--success {
+    background: linear-gradient(to right, #4CAF50, #2E7D32) !important;
+    font-family: 'Arial', sans-serif;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  }
+  
+  .Toastify__toast-body {
+    padding: 15px !important;
+  }
+  
+  .Toastify__toast h3 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    color: white;
+  }
+  
+  .Toastify__toast p {
+    margin: 0;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+  }
