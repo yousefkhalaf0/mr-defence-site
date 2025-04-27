@@ -1,0 +1,64 @@
+.heroSection {
+    
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+url('/public/imgs/hero.jpg') center/cover no-repeat;
+    height: 100vh;
+  }
+ 
+
+  .overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 0;
+  }
+  .enhancing h1 span{
+    color: #FD5B68;
+  }
+  .textp:hover{
+    cursor: pointer;
+   color: #ff0000 !important ;
+   font-weight: 500;
+
+  }
+ .numbers h1{
+    color:#FD5B68;
+
+ }
+ .people{
+    background-color: #e0e0e0;
+ }
+ .people >div{
+    border-radius: 20px;
+ }
+
+ /* feedback section */
+ .feedback{
+    background-color: #CFD0D2;
+ }
+
+.profilePlaceholder {
+    width: 64px;
+    height: 64px;
+    background-color: #ccc;
+    border: 1px solid #FD5B68;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  /* blog  section */
+  .blog{
+    background-color: #e0e0e0;
+  }
+  /* RecentCrimes  section */
+
+  .RecentCrimes{
+    background-color: #e0e0e0;
+    padding: 30px 15px;
+  }
+  
+  
+
+  
+ 
+  

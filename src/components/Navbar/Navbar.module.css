@@ -33,10 +33,15 @@
   font-weight: 600;
 }
 
-.navbar-toggler {
-  border: none;
-  outline: none;
-  padding: 0.5rem;
+.navbarToggler {
+  border: none !important;
+  outline: none !important;
+  padding: 0.5rem !important;
+  background-color: transparent !important;
+  color: #fff !important;
+}
+.navbarToggler:hover{
+  color: #fff !important;
 }
 
 .iconToggle {

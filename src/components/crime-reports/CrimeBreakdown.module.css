@@ -1,0 +1,29 @@
+.statusSolved {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .statusPending {
+    background-color: #ffc107;
+    color: #212529;
+  }
+  
+  .statusOngoing {
+    background-color: #17a2b8;
+    color: white;
+  }
+  
+  .severityHigh {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .severityMedium {
+    background-color: #fd7e14;
+    color: white;
+  }
+  
+  .severityLow {
+    background-color: #6c757d;
+    color: white;
+  }

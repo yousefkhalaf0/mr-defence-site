@@ -24,7 +24,7 @@ const Footer = () => {
             <ul className="list-unstyled">
               <li><Link to="/" className={styles.footerStyle}>Home</Link></li>
               <li><Link to="/about" className={styles.footerStyle}>About Us</Link></li>
-              <li><Link to="/reports" className={styles.footerStyle}>Crime Reports</Link></li>
+              <li><Link to="/CrimeReports" className={styles.footerStyle}>Crime Reports</Link></li>
               <li><Link to="/responses" className={styles.footerStyle}>Crime Responses</Link></li>
               <li><Link to="/contact" className={styles.footerStyle}>Contact Us</Link></li>
             </ul>
