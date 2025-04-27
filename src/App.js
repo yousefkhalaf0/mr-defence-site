@@ -14,6 +14,9 @@ import Premium from "./components/Premium/Premium";
 import Support from "./components/Support/Support";
 import Notfound from "./components/Notfound/Notfound";
 import Explore from "./components/Explore/Explore";
+import FormWithCustomValidation from './components/Authentication/Register';
+import Register from './components/Authentication/Register';  
+import Login from './components/Authentication/Login';  
 
 let router = createBrowserRouter([
   {
@@ -27,6 +30,8 @@ let router = createBrowserRouter([
       { path: "premium", element: <Premium /> },
       { path: "support", element: <Support /> },
       { path: "explore", element: <Explore /> },
+      { path: "register", element: <Register /> },
+      { path: "login", element: <Login /> },
       { path: "*", element: <Notfound /> },
     ],
   },

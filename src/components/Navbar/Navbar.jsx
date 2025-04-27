@@ -11,19 +11,7 @@ const Navbar = () => {
   };
 
   return (
-<<<<<<< HEAD
-    <nav className={`navbar navbar-expand-lg  ${styles.navbar}`}>
-      <div className="container">
-        <Link className="navbar-brand text-white" to="/">mr-defence</Link>
-        <button 
-          className={`navbar-toggler ${styles.navbarToggler}`} 
-          type="button" 
-          data-bs-toggle="collapse" 
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav" 
-          aria-expanded={isOpen}
-          aria-label="Toggle navigation"
-=======
+ 
     <nav className={`navbar navbar-expand-lg ${styles.navbar}`}>
       <div className="container-fluid">
         {/* Left: Logo + Site Name */}
@@ -36,7 +24,7 @@ const Navbar = () => {
         <button
           className={`navbar-toggler ${styles.navbarToggler}`}
           type="button"
->>>>>>> master
+ 
           onClick={toggleNavbar}
         >
           <i
@@ -99,6 +87,30 @@ const Navbar = () => {
                 to="/crime-responses"
               >
                 Crime Response's
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                className={({ isActive }) =>
+                  `nav-link ${styles["nav-link"]} ${
+                    isActive ? styles.activeLink : ""
+                  }`
+                }
+                to="/register"
+              >
+                Register
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                className={({ isActive }) =>
+                  `nav-link ${styles["nav-link"]} ${
+                    isActive ? styles.activeLink : ""
+                  }`
+                }
+                to="/login"
+              >
+                  Login
               </NavLink>
             </li>
             <li className="nav-item">
