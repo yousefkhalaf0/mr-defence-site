@@ -10,8 +10,10 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
+ 
   return ( 
     <nav className={`navbar fixed-top navbar-expand-lg ${styles.navbar}`}>
+ 
       <div className="container-fluid">
         {/* Left: Logo + Site Name */}
         <NavLink className={`navbar-brand ${styles["navbar-brand"]}`} to="/">
@@ -23,7 +25,7 @@ const Navbar = () => {
         <button
           className={`navbar-toggler ${styles.navbarToggler}`}
           type="button"
-
+ 
           onClick={toggleNavbar}
         >
           <i
@@ -98,6 +100,30 @@ const Navbar = () => {
                 to="/tutorials"
               >
                 Tutorials
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                className={({ isActive }) =>
+                  `nav-link ${styles["nav-link"]} ${
+                    isActive ? styles.activeLink : ""
+                  }`
+                }
+                to="/register"
+              >
+                Register
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                className={({ isActive }) =>
+                  `nav-link ${styles["nav-link"]} ${
+                    isActive ? styles.activeLink : ""
+                  }`
+                }
+                to="/login"
+              >
+                  Login
               </NavLink>
             </li>
             <li className="nav-item">
