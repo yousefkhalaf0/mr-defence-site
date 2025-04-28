@@ -83,9 +83,9 @@ const CrimeReports = () => {
   }
 
   return (
-    <div className={` py-4 ${styles.crimeReports}`}>
+    <div className={`  ${styles.crimeReports} m-0 px-0`}>
       <div className={styles.headerBanner}>
-        <h1 className={`text-white mb-0 `}>Crime Reports Of <span className="text-danger">2023</span> </h1>
+        <h1 className={`text-white mb-0 `}>Crime Reports Of <span className="text-danger">2025</span> </h1>
       </div>
       
   
@@ -97,7 +97,7 @@ const CrimeReports = () => {
       <div className="container mt-5" data-aos="fade-up">
         <div className="card shadow-sm">
           <div className="card-header bg-white">
-            <h3 className="mb-0">Crime Density Map</h3>
+            <h2 className="mb-0 py-4">Crime Density Map</h2>
           </div>
           <div className="card-body p-0">
             <CrimeMap reports={reports} />
@@ -121,22 +121,10 @@ const CrimeReports = () => {
         </div>
       </div>
       
-      {/* Crime Trends */}
-      <div className="container mt-5" data-aos="fade-up" data-aos-delay="200">
-        <div className="card shadow-sm">
-          <div className="card-header bg-white">
-            <h3 className="mb-0">Crime Trends (2021-2023)</h3>
-          </div>
-          <div className="card-body">
-            <CrimeTrends />
-          </div>
-        </div>
-      </div>
+
       
-      {/* Recent Crimes Section */}
-      <div className="mt-5" data-aos="fade-up" data-aos-delay="300">
-        <RecentCrimes limit={5} />
-      </div>
+    
+     
     </div>
   );
 };

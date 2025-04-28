@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { collection, getDocs, query, orderBy, where, limit } from "firebase/firestore";
 import { db } from "../../firebase";
+import styles from "./CrimeStats.module.css";
 import { FaHome } from "react-icons/fa";
 
 const CrimeStats = () => {
@@ -212,29 +213,21 @@ const CrimeStats = () => {
   };
 
   return (
-    <div className="container-fluid p-0">
+    <div className="m-0 p-0">
       {/* Top Blue Header Bar - Exactly like the image */}
-      <div className="bg-primary text-white px-4 py-2 d-flex justify-content-between align-items-center">
+      <div className={` text-white px-4 py-4 d-flex justify-content-between align-items-center`} style={{ backgroundColor: '#3C4F5D' }}>
         <h5 className="m-0">Crime Reports of {currentYear}</h5>
         <small>as of {new Date().toLocaleDateString()}</small>
       </div>
       
-      {/* Light Gray Navigation Bar - Exactly like the image */}
-      <div className="bg-light px-4 py-2 d-flex justify-content-between align-items-center border-bottom">
-        {/* Breadcrumb with no bullets, just text */}
-        {/* <div className="d-flex align-items-center gap-2">
-          <FaHome className="text-secondary" />
-          <span className="text-secondary">Home</span>
-          <span className="text-secondary"></span>
-          <span className="text-secondary">Report</span>
-          <span className="text-secondary">/</span>
-          <span className="text-secondary">North</span>
-        </div> */}
+      <div className="container-fluid px-5">
+        {/* Light Gray Navigation Bar - Exactly like the image */}
+      <div className=" px-4 py-2  ">
         
         {/* Region Selector Dropdown */}
         <select 
-          className="form-select form-select-sm" 
-          style={{ width: 'auto', maxWidth: '150px' }}
+          className={`form-select form-select-sm  ${styles.select}`}
+          style={{ width: 'auto', minWidth: '250px' }}
           value={selectedRegion}
           onChange={(e) => setSelectedRegion(e.target.value)}
           aria-label="Select region"
@@ -262,10 +255,10 @@ const CrimeStats = () => {
           </div>
         </div>
       ) : (
-        <div className="row g-4 p-4">
+        <div className="row g-4 p-4 ">
           {/* Total Reports Card */}
           <div className="col-md-6 col-lg-3">
-            <div className="card border-0 shadow-sm h-100">
+            <div className="card border-0 shadow-lg border-primary h-100">
               <div className="card-body text-center">
                 <h6 className="text-uppercase text-muted mb-2">Reports {selectedRegion !== "All" ? selectedRegion : ""}</h6>
                 <h2 className="display-4 fw-bold mb-1">{stats.total.current.toLocaleString()}</h2>
@@ -280,8 +273,8 @@ const CrimeStats = () => {
           </div>
           
           {/* Violent Crimes Card */}
-          <div className="col-md-6 col-lg-3">
-            <div className="card border-0 shadow-sm h-100">
+          <div className="col-md-6 col-lg-3 ">
+            <div className="card border-0 shadow-lg h-100">
               <div className="card-body text-center">
                 <h6 className="text-uppercase text-muted mb-2">Violent Crimes</h6>
                 <h2 className="display-4 fw-bold mb-1">{stats.violent.current.toLocaleString()}</h2>
@@ -297,7 +290,7 @@ const CrimeStats = () => {
           
           {/* Property Crimes Card */}
           <div className="col-md-6 col-lg-3">
-            <div className="card border-0 shadow-sm h-100">
+            <div className="card border-0 shadow-lg h-100">
               <div className="card-body text-center">
                 <h6 className="text-uppercase text-muted mb-2">Property Crimes</h6>
                 <h2 className="display-4 fw-bold mb-1">{stats.property.current.toLocaleString()}</h2>
@@ -313,7 +306,7 @@ const CrimeStats = () => {
           
           {/* Other Incidents Card */}
           <div className="col-md-6 col-lg-3">
-            <div className="card border-0 shadow-sm h-100">
+            <div className="card border-0 shadow-lg   h-100">
               <div className="card-body text-center">
                 <h6 className="text-uppercase text-muted mb-2">Other Incidents</h6>
                 <h2 className="display-4 fw-bold mb-1">{stats.other.current.toLocaleString()}</h2>
@@ -328,6 +321,7 @@ const CrimeStats = () => {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 };

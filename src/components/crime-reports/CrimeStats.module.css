@@ -72,3 +72,26 @@
   .statsCard:hover {
     transform: translateY(-5px);
   }
+
+  .headerBanner{
+    padding: 50px 0;
+    background-color: #3C4F5D !important;
+  }
+  .select{  background-color: #3C4F5D;
+    color: #ffffff;
+   
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    padding: 8px 12px;
+    font-size: 14px;
+    transition: all 0.3s ease;}
+    .select:focus {
+      border-color: #ffffff;
+      box-shadow: 0 0 5px rgba(204, 204, 204, 0.5);
+      outline: none;
+    }
+    
+    .select option {
+      background-color: #3C4F5D;
+      color: #ccc;
+    }

@@ -18,6 +18,7 @@ const CrimeMap = () => {
   const [selectedTimePeriod, setSelectedTimePeriod] = useState("");
   const [maxIntensity, setMaxIntensity] = useState(0);
   const [minIntensity, setMinIntensity] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
@@ -25,64 +26,75 @@ const CrimeMap = () => {
 
   useEffect(() => {
     const fetchReports = async () => {
-      const reportsCollection = collection(db, "reports");
-      const reportSnapshot = await getDocs(reportsCollection);
-      
-      const locations = reportSnapshot.docs.map((doc) => {
-        const data = doc.data();
-        const location = data.occurred_location;
-        const time = data.occurred_time?.toDate?.() || new Date();
+      try {
+        setLoading(true);
+        const reportsCollection = collection(db, "reports");
+        const reportSnapshot = await getDocs(reportsCollection);
+        
+        const locations = reportSnapshot.docs.map((doc) => {
+          const data = doc.data();
+          const location = data.occured_location; // Note the double 'r'
+          const time = data.occured_time?.toDate?.() || new Date();
 
-        if (location) {
-          let intensity = 0.5; 
+          if (location) {
+            let intensity = 0.5;
 
-    switch (data.emergency_type) {
-      case "fire":
-        intensity = 0.7; 
-        break;
-      case "killing":
-        intensity = 1.0; 
-        break;
-      case "robbery crime":
-        intensity = 0.6; 
-        break;
-      case "property crime":
-        intensity = 0.5; 
-        break;
-      case "collision":
-        intensity = 0.8; 
-        break;
-      default:
-        intensity = 0.5; 
-        break;
-    }
+            switch (data.emergency_type.toLowerCase()) {
+              case "fire":
+              case "wildfire":
+                intensity = 0.7;
+                break;
+              case "killing":
+              case "assault/fight":
+                intensity = 1.0;
+                break;
+              case "robbery crime":
+              case "robbery/theft":
+                intensity = 0.6;
+                break;
+              case "property crime":
+              case "break in":
+                intensity = 0.5;
+                break;
+              case "collision":
+              case "accident":
+                intensity = 0.8;
+                break;
+              default:
+                intensity = 0.5;
+                break;
+            }
 
-
-          return {
-            lat: location.latitude,
-            lng: location.longitude,
-            intensity, 
-            type: data.emergency_type,
-            area: data.location_name,
-            time,
-          };
-        } else {
+            return {
+              lat: location.latitude,
+              lng: location.longitude,
+              intensity,
+              type: data.emergency_type,
+              area: data.location_name,
+              time,
+            };
+          }
           return null;
+        }).filter(Boolean);
+
+        if (locations.length > 0) {
+          const intensities = locations.map((loc) => loc.intensity);
+          setMaxIntensity(Math.max(...intensities));
+          setMinIntensity(Math.min(...intensities));
         }
-      }).filter((loc) => loc !== null);
 
-      // حساب الكثافة الأعلى والأدنى بعد تحميل البيانات
-      const intensities = locations.map((loc) => loc.intensity);
-      setMaxIntensity(Math.max(...intensities));
-      setMinIntensity(Math.min(...intensities));
+        setHeatmapData(locations);
+        setFilteredData(locations);
 
-      setHeatmapData(locations);
-      setFilteredData(locations);
-
-      const uniqueCrimeTypes = [...new Set(locations.map(l => l.type))];
-      const uniqueAreas = [...new Set(locations.map(l => l.area))];
-      setCrimeTypes(uniqueCrimeTypes);
-      setAreas(uniqueAreas);
+        const uniqueCrimeTypes = [...new Set(locations.map(l => l.type))];
+        const uniqueAreas = [...new Set(locations.map(l => l.area))];
+        setCrimeTypes(uniqueCrimeTypes);
+        setAreas(uniqueAreas);
+      } catch (error) {
+        console.error("Error fetching reports:", error);
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchReports();
@@ -96,11 +108,15 @@ const CrimeMap = () => {
     let filtered = [...heatmapData];
 
     if (selectedCrimeType) {
-      filtered = filtered.filter(item => item.type === selectedCrimeType);
+      filtered = filtered.filter(item => 
+        item.type.toLowerCase() === selectedCrimeType.toLowerCase()
+      );
     }
 
     if (selectedArea) {
-      filtered = filtered.filter(item => item.area === selectedArea);
+      filtered = filtered.filter(item => 
+        item.area.toLowerCase().includes(selectedArea.toLowerCase())
+      );
     }
 
     if (selectedTimePeriod) {
@@ -118,75 +134,97 @@ const CrimeMap = () => {
   };
 
   const getEmojiForCrimeType = (type) => {
-    switch (type) {
-      case "Fire":
+    if (!type) return "⚠️";
+    
+    switch (type.toLowerCase()) {
+      case "fire":
         return "🔥";
-      case "Collision":
+      case "collision":
+      case "accident":
         return "💥";
-      case "Missing pet":
+      case "missing pet":
         return "🐾";
-      case "Animal attack":
+      case "animal attack":
         return "🐅";
-      case "Gun":
+      case "gun":
         return "🔫";
-      case "Break in":
+      case "break in":
         return "🚪";
-      case "Assault/Fight":
+      case "assault":
+      case "assault/fight":
         return "🥊";
-      case "Harassment":
+      case "harassment":
         return "⚠️";
-      case "Earthquake":
+      case "earthquake":
         return "🌍";
-      case "Hazard":
+      case "hazard":
         return "☣️";
-      case "Missing person":
+      case "missing person":
         return "👤";
-      case "Robbery/Theft":
+      case "robbery":
+      case "robbery/theft":
+      case "robbery crime":
         return "🏃‍♀️";
-      case "Weapon":
+      case "weapon":
         return "🗡️";
-      case "Weather":
+      case "weather":
         return "🌧️";
-      case "Wildfire":
+      case "wildfire":
         return "🔥";
       default:
-        return "⚠️"; 
-     
+        return "⚠️";
     }
   };
-  // const gradient = {
-  //   0.0: "blue",
-  //   0.2: "green",
-  //   0.4: "yellow",
-  //   0.6: "orange",
-  //   0.8: "red",
-  //   1.0: "darkred",
-  // };
+
+  const gradient = {
+    0.0: "blue",
+    0.2: "green",
+    0.4: "yellow",
+    0.6: "orange",
+    0.8: "red",
+    1.0: "darkred",
+  };
+
+  if (loading) {
+    return <div className={`container ${styles.crimeMapContainer}`}>Loading crime data...</div>;
+  }
 
   return (
     <div className={`container ${styles.crimeMapContainer}`} data-aos="fade-up">
-      <h2 className="text-center mb-4">Crime Density Map</h2>
+      
 
       <div className={`row ${styles.filters}`} data-aos="fade-up">
         <div className="col-md-4 mb-3">
-          <select className="form-select" onChange={(e) => setSelectedCrimeType(e.target.value)} value={selectedCrimeType}>
-            <option value="">Crime Type</option>
+          <select 
+            className="form-select" 
+            onChange={(e) => setSelectedCrimeType(e.target.value)} 
+            value={selectedCrimeType}
+          >
+            <option value="">All Crime Types</option>
             {crimeTypes.map((type, idx) => (
               <option key={idx} value={type}>{type}</option>
             ))}
           </select>
         </div>
         <div className="col-md-4 mb-3">
-          <select className="form-select" onChange={(e) => setSelectedTimePeriod(e.target.value)} value={selectedTimePeriod}>
-            <option value="">Time Period</option>
+          <select 
+            className="form-select" 
+            onChange={(e) => setSelectedTimePeriod(e.target.value)} 
+            value={selectedTimePeriod}
+          >
+            <option value="">All Time</option>
             <option value="24h">Last 24 hours</option>
             <option value="7d">Last 7 days</option>
             <option value="30d">Last 30 days</option>
           </select>
         </div>
         <div className="col-md-4 mb-3">
-          <select className="form-select" onChange={(e) => setSelectedArea(e.target.value)} value={selectedArea}>
-            <option value="">Area</option>
+          <select 
+            className="form-select" 
+            onChange={(e) => setSelectedArea(e.target.value)} 
+            value={selectedArea}
+          >
+            <option value="">All Areas</option>
             {areas.map((area, idx) => (
               <option key={idx} value={area}>{area}</option>
             ))}
@@ -196,7 +234,7 @@ const CrimeMap = () => {
 
       <div className={`position-relative ${styles.mapWrapper}`}>
         <MapContainer
-          className={`${styles.mapContainer}`}
+          className={styles.mapContainer}
           center={[26.8206, 30.8025]}
           zoom={6}
           minZoom={2}
@@ -207,13 +245,17 @@ const CrimeMap = () => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
 
-          <HeatmapLayer
-            points={filteredData.map(p => [p.lat, p.lng, p.intensity])}
-            longitudeExtractor={m => m[1]}
-            latitudeExtractor={m => m[0]}
-            intensityExtractor={m => m[2]}
-            // gradient={gradient}
-          />
+          {filteredData.length > 0 && (
+            <HeatmapLayer
+              points={filteredData.map(p => [p.lat, p.lng, p.intensity])}
+              longitudeExtractor={m => m[1]}
+              latitudeExtractor={m => m[0]}
+              intensityExtractor={m => m[2]}
+              gradient={gradient}
+              radius={25}
+              blur={15}
+            />
+          )}
 
           {filteredData.map((point, idx) => (
             <Marker key={idx} position={[point.lat, point.lng]}>
@@ -228,23 +270,18 @@ const CrimeMap = () => {
           ))}
         </MapContainer>
 
-        {/* Legend */}
         <div className={`p-3 ${styles.legend}`}>
           <h5>Crime Density</h5>
           <div>
-            <span className={`${styles.dot} ${styles.low}`}></span> 
-            {/* Low: {minIntensity.toFixed(2)} */} Low
+            <span className={`${styles.dot} ${styles.low}`}></span> Low
           </div>
           <div>
-            <span className={`${styles.dot} ${styles.medium}`}></span> 
-           Medium {/* : {((minIntensity + maxIntensity) / 2).toFixed(2)} */}
+            <span className={`${styles.dot} ${styles.medium}`}></span> Medium
           </div>
           <div>
-            <span className={`${styles.dot} ${styles.high}`}></span> 
-            High{/* : {maxIntensity.toFixed(2)} */}
+            <span className={`${styles.dot} ${styles.high}`}></span> High
           </div>
         </div>
-
       </div>
     </div>
   );
