@@ -1,19 +1,24 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import logo from "./theSmallLogo.svg";
 import { FaUserCircle } from "react-icons/fa";
-
+import { auth } from "../../firebase";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { FaSignOutAlt } from 'react-icons/fa';
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
-  const dropdownRef = useRef(null);
 
   useEffect(() => {
-    const token = localStorage.getItem("authToken");
-    setIsLoggedIn(!!token);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsLoggedIn(!!user);
+    });
+
+    return () => unsubscribe();
   }, []);
 
   const toggleNavbar = () => {
@@ -22,38 +27,32 @@ const Navbar = () => {
 
   const handleUserClick = () => {
     if (isLoggedIn) {
-      setShowDropdown((prev) => !prev);
+      navigate("/profile");
     } else {
-      navigate('/login');
+      navigate("/login");
     }
   };
 
-  const handleProfile = () => {
-    setShowDropdown(false);
-    navigate('/profile');
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      toast.success("Logged out successfully!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+      });
+      navigate("/");
+    } catch (error) {
+      toast.error("Error logging out. Please try again.", {
+        position: "top-center",
+        theme: "colored",
+      });
+    }
   };
-
-  const handleLogout = () => {
-    localStorage.removeItem("authToken");
-    localStorage.removeItem("userData");
-    setIsLoggedIn(false);
-    setShowDropdown(false);
-    navigate('/');
-  };
-
-  // Close dropdown if clicked outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setShowDropdown(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   return (
     <nav className={`navbar fixed-top navbar-expand-lg ${styles.navbar}`}>
@@ -70,7 +69,11 @@ const Navbar = () => {
           type="button"
           onClick={toggleNavbar}
         >
-          <i className={`fas ${isOpen ? "fa-times" : "fa-bars"} ${styles.iconToggle}`}></i>
+          <i
+            className={`fas ${isOpen ? "fa-times" : "fa-bars"} ${
+              styles.iconToggle
+            }`}
+          ></i>
         </button>
 
         {/* Right: Nav links */}
@@ -82,51 +85,108 @@ const Navbar = () => {
           <ul className="navbar-nav align-items-center">
             {/* Links */}
             <li className="nav-item">
-              <NavLink className={({ isActive }) => `nav-link ${styles["nav-link"]} ${isActive ? styles.activeLink : ""}`} to="/">Home</NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  `nav-link ${styles["nav-link"]} ${
+                    isActive ? styles.activeLink : ""
+                  }`
+                }
+                to="/"
+              >
+                Home
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className={({ isActive }) => `nav-link ${styles["nav-link"]} ${isActive ? styles.activeLink : ""}`} to="/about">About Us</NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  `nav-link ${styles["nav-link"]} ${
+                    isActive ? styles.activeLink : ""
+                  }`
+                }
+                to="/about"
+              >
+                About Us
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className={({ isActive }) => `nav-link ${styles["nav-link"]} ${isActive ? styles.activeLink : ""}`} to="/CrimeReports">Crime Reports</NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  `nav-link ${styles["nav-link"]} ${
+                    isActive ? styles.activeLink : ""
+                  }`
+                }
+                to="/CrimeReports"
+              >
+                Crime Reports
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className={({ isActive }) => `nav-link ${styles["nav-link"]} ${isActive ? styles.activeLink : ""}`} to="/Explore">Explore</NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  `nav-link ${styles["nav-link"]} ${
+                    isActive ? styles.activeLink : ""
+                  }`
+                }
+                to="/Explore"
+              >
+                Explore
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className={({ isActive }) => `nav-link ${styles["nav-link"]} ${isActive ? styles.activeLink : ""}`} to="/tutorials">Tutorials</NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  `nav-link ${styles["nav-link"]} ${
+                    isActive ? styles.activeLink : ""
+                  }`
+                }
+                to="/tutorials"
+              >
+                Tutorials
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className={({ isActive }) => `nav-link ${styles["nav-link"]} ${isActive ? styles.activeLink : ""}`} to="/contact">Contact Us</NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  `nav-link ${styles["nav-link"]} ${
+                    isActive ? styles.activeLink : ""
+                  }`
+                }
+                to="/contact"
+              >
+                Contact Us
+              </NavLink>
             </li>
 
-            {/* User Icon + Dropdown */}
-            <li className="nav-item position-relative" ref={dropdownRef}>
+            {/* User Icon and Logout */}
+            <li className="nav-item d-flex align-items-center">
               <button
                 className={styles.userIconButton}
                 onClick={handleUserClick}
-                title={isLoggedIn ? "Profile Options" : "Login"}
+                title={isLoggedIn ? "Profile" : "Login"}
               >
-                <FaUserCircle 
-                  size={32} 
-                  className={isLoggedIn ? styles.loggedInIcon : ""} 
+                <FaUserCircle
+                  size={32}
+                  className={isLoggedIn ? styles.loggedInIcon : ""}
                 />
                 {isLoggedIn && (
                   <span className={styles.loggedInIndicator}></span>
                 )}
               </button>
-
-              {isLoggedIn && showDropdown && (
-                <div className={styles.dropdownMenu}>
-                  <button onClick={handleProfile} className={styles.dropdownItem}>Profile</button>
-                  <button onClick={handleLogout} className={styles.dropdownItem}>Logout</button>
-                </div>
+              {isLoggedIn && (
+                <button
+                className={`btn fs-6 btn-outline-light ms-2 ${styles.logoutButton}`}
+                onClick={handleLogout}
+                title="Logout" // إضافة عنوان توضيحي يظهر عند hover
+              >
+                <FaSignOutAlt /> {/* الأيقونة بدلاً من النص */}
+              </button>
+              
               )}
             </li>
-
           </ul>
         </div>
       </div>
+      <ToastContainer />
     </nav>
   );
 };

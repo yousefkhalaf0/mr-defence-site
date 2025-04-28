@@ -134,7 +134,7 @@ const Register = () => {
       <div className="auth-wrapper">
         <div className="left-section position-relative">
           <img 
-            src="/imgs/register.png" 
+            src="/imgs/register22.png" 
             alt="Register Illustration" 
             className="auth-image d-block position-absolute w-75"
           />
