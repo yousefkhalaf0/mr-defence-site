@@ -70,15 +70,7 @@ const CrimeReports = () => {
     fetchReports();
   }, []);
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    // Implement search logic here
-    console.log("Searching for:", searchQuery);
-  };
 
-  const handleLocationChange = (e) => {
-    setLocation(e.target.value);
-  };
 
   if (loading) {
     return (
@@ -91,33 +83,12 @@ const CrimeReports = () => {
   }
 
   return (
-    <div className="container-fluid py-4">
+    <div className={` py-4 ${styles.crimeReports}`}>
       <div className={styles.headerBanner}>
-        <h1 className="text-white mb-0">Crime Reports Of 2023</h1>
+        <h1 className={`text-white mb-0 `}>Crime Reports Of <span className="text-danger">2023</span> </h1>
       </div>
       
-      {/* Search Bar */}
-      <div className={`${styles.searchBar} mt-4 mb-5`} data-aos="fade-down">
-        <div className="container">
-          <form onSubmit={handleSearch} className="d-flex align-items-center">
-            <div className="input-group">
-              <span className="input-group-text bg-white border-end-0">
-                <FaMapMarkerAlt className="text-danger" />
-              </span>
-              <input
-                type="text"
-                className="form-control border-start-0"
-                placeholder="Location"
-                value={location}
-                onChange={handleLocationChange}
-              />
-            </div>
-            <button type="submit" className="btn btn-danger ms-3">
-              <FaSearch className="me-2" /> Search Reports
-            </button>
-          </form>
-        </div>
-      </div>
+  
       
       {/* Stats Section */}
       <CrimeStats stats={stats} />
@@ -137,14 +108,12 @@ const CrimeReports = () => {
       {/* Crime Breakdown */}
       <div className="container mt-5" data-aos="fade-up" data-aos-delay="100">
         <div className="card shadow-sm">
-          <div className="card-header bg-white d-flex justify-content-between align-items-center">
-            <h3 className="mb-0">Detailed Crime Breakdown</h3>
-            <button className="btn btn-outline-dark">
-              <FaFilter className="me-2" /> Filter
-            </button>
+          <div className="card-header bg-white ">
+            <h3 className="py-4 text-center h1">Detailed Crime Breakdown</h3>
+           
           </div>
           <div className="card-body">
-            {/* <CrimeBreakdown reports={reports} /> */}
+            <CrimeBreakdown reports={reports} />
           </div>
         </div>
       </div>

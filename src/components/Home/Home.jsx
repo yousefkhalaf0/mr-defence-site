@@ -1,11 +1,70 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Home.module.css';
 import Carousel from '../About/Carousel';
 import RecentCrimes from './RecentCrimes.jsx';
+import { getDoc, doc, collection, getDocs, query, where, getCountFromServer } from "firebase/firestore";
+import { db } from "../../firebase"; 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 const Home = () => {
+  const [statistics, setStatistics] = useState({
+    totalCases: 0,
+    totalUsers: 0,
+    totalAreas: 0,
+    loading: true
+  });
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  }, []);
+
+  useEffect(() => {
+    const fetchStatistics = async () => {
+      try {
+        // Get total number of reports (cases)
+        const reportsQuery = collection(db, "reports");
+        const reportsSnapshot = await getCountFromServer(reportsQuery);
+        const totalCases = reportsSnapshot.data().count;
+
+        // Get total number of users
+        const usersQuery = collection(db, "users");
+        const usersSnapshot = await getCountFromServer(usersQuery);
+        const totalUsers = usersSnapshot.data().count;
+
+        // Get unique areas based on location_name in reports
+        const reportsCollection = await getDocs(reportsQuery);
+        const uniqueAreas = new Set();
+        
+        reportsCollection.forEach(doc => {
+          const data = doc.data();
+          if (data.location_name) {
+            uniqueAreas.add(data.location_name);
+          }
+        });
+
+        setStatistics({
+          totalCases,
+          totalUsers,
+          totalAreas: uniqueAreas.size,
+          loading: false
+        });
+      } catch (error) {
+        console.error("Error fetching statistics:", error);
+        setStatistics(prev => ({ ...prev, loading: false }));
+      }
+    };
+
+    fetchStatistics();
+  }, []);
+
+  // Format numbers with commas
+  const formatNumber = (num) => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
   }, []);
@@ -50,9 +109,8 @@ const Home = () => {
     <>
 
     {/* hero section */}
-      <section className={`position-relative text-white ${styles.heroSection}`}>
+    <section className={`position-relative text-white ${styles.heroSection}`}>
         <div className={`position-absolute top-0 start-0 w-100 h-100 ${styles.overlay}`}></div>
-
         <div className="container h-100 d-flex flex-column justify-content-center align-items-center position-relative z-1 text-center">
           <h1 className="fw-bold mb-3" data-aos="fade-up">
             Report, Track, Prevent – For a Safer Tomorrow
@@ -60,33 +118,38 @@ const Home = () => {
           <p className="lead mb-5" data-aos="fade-up" data-aos-delay="200">
             Safeguarding Together: Your Bridge to a Secure Environment
           </p>
+          <div className="row text-center gx-4">
+  <div className={`col-md-4 mb-4 ${styles.lest}`} data-aos="zoom-in" data-aos-delay="300">
+    <div className="d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
+      <img src="icons/bagg.svg" alt="" />
+      <div>
+        <h6>{statistics.loading ? '...' : formatNumber(statistics.totalCases)}</h6>
+        <p className="text-secondary">Cases</p>
+      </div>
+    </div>
+  </div>
 
-          <div className="row text-center g-5">
-            <div className={`col-md-4 mb-4 ${styles.lest}`} data-aos="zoom-in" data-aos-delay="300">
-              <div className="d-flex align-items-center justify-content-between">
-                <img src="icons/bagg.svg" alt="" />
-                <div>   <h6>25,850</h6>
-                  <p className=' text-secondary'>Cases</p></div>
+  <div className={`col-md-4 mb-4 ${styles.lest}`} data-aos="zoom-in" data-aos-delay="500">
+    <div className="d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
+      <img src="icons/users.svg" alt="" />
+      <div>
+        <h6>{statistics.loading ? '...' : formatNumber(statistics.totalUsers)}</h6>
+        <p className="text-secondary">People</p>
+      </div>
+    </div>
+  </div>
 
-              </div>
-            </div>
-            <div className={`col-md-4 mb-4 ${styles.lest}`} data-aos="zoom-in" data-aos-delay="500">
-              <div className="d-flex align-items-center justify-content-between">
-                <img src="icons/users.svg" alt="" />
+  <div className={`col-md-4 mb-4 ${styles.lest}`} data-aos="zoom-in" data-aos-delay="700">
+    <div className="d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
+      <img src="icons/building.svg" alt="" />
+      <div>
+        <h6>{statistics.loading ? '...' : formatNumber(statistics.totalAreas)}</h6>
+        <p className="text-secondary text-nowrap">Areas</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-                <div>
-                  <h6>10,250</h6>
-                  <p className=' text-secondary'>People</p>
-                </div>
-              </div>
-            </div>
-            <div className={`col-md-4 mb-4 ${styles.lest}`} data-aos="zoom-in" data-aos-delay="700">
-              <div className="d-flex align-items-center justify-content-between">
-                <img src="icons/building.svg" alt="" />             <div className=''> <h6>18,400</h6>
-                  <p className=' text-secondary text-nowrap ps-4'>Areas Located</p></div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
       {/* RecentCrimes section */}

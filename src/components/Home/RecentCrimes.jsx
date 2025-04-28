@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../firebase"; // عدّل المسار حسب مشروعك
+import { db } from "../../firebase"; 
 import AOS from "aos";
 import "aos/dist/aos.css";
 import styles from "./RecentCrimes.module.css";
@@ -49,7 +50,7 @@ const RecentCrimes = () => {
           <h1 className="fw-bold">Recent Crimes Happened</h1>
           <p>Stay informed and vigilant with our comprehensive data</p>
         </div>
-        <a href="/CrimeReports" className={styles.viewAll}>View all</a>
+        <Link to="/CrimeReports" className={styles.viewAll}>View all</Link>
       </div>
 
       {reports.map((report, index) => (
@@ -68,8 +69,8 @@ const RecentCrimes = () => {
               className={`me-3 ${styles.crimeIcon}`}
             />
             <div className="flex-grow-1">
-              <h5 className="mb-1">{report.emergecy_type || "Unknown Type"}</h5>
-              <p className="text-muted">{formatLocation(report.occured_location)}</p>
+              <h5 className="mb-1">{report.emergency_type || "Unknown Type"}</h5>
+              <p className="text-muted">{formatLocation(report.location_name)}</p>
             </div>
             <button
               className="btn btn-dark d-flex align-items-center"
