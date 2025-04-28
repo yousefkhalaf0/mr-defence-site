@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { auth } from '../../firebase';
+import { auth } from '../../../firebase';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -131,7 +131,7 @@ const Register = () => {
     <div className="auth-container register">
       <ToastContainer />
       
-      <div className="auth-wrapper container">
+      <div className="auth-wrapper">
         <div className="left-section position-relative">
           <img 
             src="/imgs/register.png" 
@@ -141,10 +141,11 @@ const Register = () => {
           <div className="gradient-overlay"></div>
         </div>
 
-        <div className="right-section p-3">
-          <div className="auth-form p-2">
+        <div className="right-section">
+          <div className="auth-form">
             <div className="form-header">
-              <h1 className='pt-3'>Register Your Account</h1>
+              <h1>Register Your Account</h1>
+               
             </div>
 
             <form onSubmit={handleSubmit}>

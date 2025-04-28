@@ -21,7 +21,8 @@
     display: flex;
     width: 90%;
     max-width: 1200px;
-    height: 80vh;
+    max-height: 90vh; /* Limits maximum height */
+    min-height: 450px; 
     background: white;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);

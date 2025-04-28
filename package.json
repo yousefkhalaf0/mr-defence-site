@@ -15,6 +15,7 @@
     "firebase-admin": "^13.3.0",
     "framer-motion": "^12.9.2",
     "gsap": "^3.12.7",
+    "http-proxy-middleware": "^3.0.5",
     "leaflet": "^1.9.4",
     "react": "^19.0.0",
     "react-bootstrap-icons": "^1.11.5",
@@ -35,6 +36,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  
   "eslintConfig": {
     "extends": [
       "react-app",

@@ -1,20 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import logo from "./theSmallLogo.svg";
-import { FaUserCircle } from "react-icons/fa"; // أيقونة دائرية أنظف
+import { FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    setIsLoggedIn(!!token);
+  }, []);
 
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
 
   const handleUserClick = () => {
-    navigate('/login');
+    if (isLoggedIn) {
+      setShowDropdown((prev) => !prev);
+    } else {
+      navigate('/login');
+    }
   };
+
+  const handleProfile = () => {
+    setShowDropdown(false);
+    navigate('/profile');
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("userData");
+    setIsLoggedIn(false);
+    setShowDropdown(false);
+    navigate('/');
+  };
+
+  // Close dropdown if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <nav className={`navbar fixed-top navbar-expand-lg ${styles.navbar}`}>
@@ -61,15 +100,30 @@ const Navbar = () => {
               <NavLink className={({ isActive }) => `nav-link ${styles["nav-link"]} ${isActive ? styles.activeLink : ""}`} to="/contact">Contact Us</NavLink>
             </li>
 
-            {/* User Icon as button */}
-            <li className="nav-item">
+            {/* User Icon + Dropdown */}
+            <li className="nav-item position-relative" ref={dropdownRef}>
               <button
                 className={styles.userIconButton}
                 onClick={handleUserClick}
+                title={isLoggedIn ? "Profile Options" : "Login"}
               >
-                <FaUserCircle size={32} />
+                <FaUserCircle 
+                  size={32} 
+                  className={isLoggedIn ? styles.loggedInIcon : ""} 
+                />
+                {isLoggedIn && (
+                  <span className={styles.loggedInIndicator}></span>
+                )}
               </button>
+
+              {isLoggedIn && showDropdown && (
+                <div className={styles.dropdownMenu}>
+                  <button onClick={handleProfile} className={styles.dropdownItem}>Profile</button>
+                  <button onClick={handleLogout} className={styles.dropdownItem}>Logout</button>
+                </div>
+              )}
             </li>
+
           </ul>
         </div>
       </div>

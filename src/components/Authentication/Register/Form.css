@@ -1,3 +1,4 @@
+ /* Reset & General Styles */
 * {
   margin: 0;
   padding: 0;
@@ -9,32 +10,36 @@ body, html {
   height: 100%;
 }
 
+/* Main Container */
 .auth-container {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #f5f5f5;
+  padding: 20px;
 }
 
+/* Wrapper for Registration/Login */
 .register .auth-wrapper {
   display: flex;
   width: 100%;
   max-width: 1200px;
-  /* height: 80vh; */
+  max-height: 90vh; /* Limits maximum height */
+  min-height: 640px; /* Minimum height to prevent squishing */
   background: white;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
+/* Left Section */
 .left-section {
   flex: 1;
-  background: linear-gradient(to left, rgba(60, 79, 93, 0.8), rgba(224, 224, 224, 0.6)); 
+  background: linear-gradient(to left, rgba(60, 79, 93, 0.8), rgba(224, 224, 224, 0.6));
   display: flex;
   justify-content: center;
   align-items: center;
- 
   position: relative;
   overflow: hidden;
 }
@@ -43,7 +48,8 @@ body, html {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  top:110px;
+  position: relative;
+  top: 110px;
   right: -50px;
   z-index: 2;
 }
@@ -58,47 +64,56 @@ body, html {
   z-index: 1;
 }
 
+/* Right Section - IMPROVED */
 .right-section {
   flex: 1;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-   
+  min-height: 100%; /* Ensures it takes full height */
+  padding: 40px;
+  overflow-y: auto; /* Allows scrolling if content overflows */
 }
 
+/* Auth Form */
 .auth-form {
   width: 100%;
   max-width: 400px;
+  margin: auto; /* Centers the form vertically */
+  padding: 20px 0; /* Adds padding top and bottom */
 }
 
 .form-header {
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   text-align: center;
 }
 
 .form-header h1 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: #2c3e50;
-   
+  margin-bottom: 0.5rem;
 }
- 
+
+/* Form Rows */
 .form-row {
   display: flex;
   gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .form-row .form-group {
   flex: 1;
 }
 
+/* Form Groups */
 .form-group {
-  /* margin-bottom: 1.5rem; */
   position: relative;
+  margin-bottom: 1.5rem;
 }
 
 .form-group input {
   width: 100%;
-  padding: 0.8rem 1rem;
+  padding: 12px 16px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   font-size: 1rem;
@@ -115,16 +130,21 @@ body, html {
   border-color: #e74c3c;
 }
 
+/* Error Message */
 .error-message {
   color: #e74c3c;
   font-size: 0.8rem;
   margin-top: 0.4rem;
   display: block;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
 }
 
+/* Submit Button */
 .auth-button {
   width: 100%;
-  padding: 1rem;
+  padding: 14px;
   background-color: rgba(60, 79, 93, 0.8);
   color: white;
   border: none;
@@ -142,8 +162,9 @@ body, html {
   box-shadow: 0 5px 15px rgba(58, 123, 213, 0.3);
 }
 
+/* Footer */
 .auth-footer {
-  margin-top: 1rem;
+  margin-top: 2rem;
   text-align: center;
   font-size: 0.9rem;
   color: #7f8c8d;
@@ -159,28 +180,12 @@ body, html {
   text-decoration: underline;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .auth-wrapper {
-    flex-direction: column;
-    height: auto;
-  }
-  
-  .left-section {
-    padding: 1rem;
-    height: 200px;
-  }
-  
-  .right-section {
-    padding: 2rem 1.5rem;
-  }
-  
-  .form-row {
-    flex-direction: column;
-    gap: 0;
-  }
+/* Toastify Custom Styles */
+.Toastify__toast-container {
+  width: auto !important;
+  max-width: 500px !important;
 }
- /* Toastify Custom Styles */
+
 .Toastify__toast--success {
   background: linear-gradient(to right, #4CAF50, #2E7D32) !important;
   font-family: 'Arial', sans-serif;
@@ -202,4 +207,56 @@ body, html {
   margin: 0;
   font-size: 14px;
   color: rgba(255, 255, 255, 0.9);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .register .auth-wrapper {
+    flex-direction: column;
+    max-height: none;
+    min-height: auto;
+  }
+  
+  .left-section {
+    width: 100%;
+    height: 200px;
+    padding: 1rem;
+  }
+  
+  .right-section {
+    width: 100%;
+    padding: 2rem 1.5rem;
+    min-height: auto;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .auth-image {
+    top: 50px;
+    right: 0;
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .auth-container {
+    padding: 10px;
+  }
+
+  .form-header h1 {
+    font-size: 1.6rem;
+  }
+  
+  .auth-button {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .right-section {
+    padding: 1.5rem;
+  }
 }

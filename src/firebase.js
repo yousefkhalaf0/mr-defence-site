@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth"; // ⬅️ جديدة
-
+import { getStorage } from "firebase/storage";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCcN5he4zN046-_ukMN9aLzDlJs07gCuaE",
@@ -20,5 +20,5 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app); // ⬅️ جديدة
 const analytics = getAnalytics(app);
-
+export const storage = getStorage(app);
 export { db, auth }; // ⬅️ نصدر الـ auth كمان
