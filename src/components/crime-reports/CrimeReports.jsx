@@ -113,7 +113,10 @@ const CrimeReports = () => {
            
           </div>
           <div className="card-body">
+
             <CrimeBreakdown reports={reports} />
+
+
           </div>
         </div>
       </div>

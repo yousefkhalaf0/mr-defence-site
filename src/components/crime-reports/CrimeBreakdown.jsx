@@ -161,5 +161,4 @@ const CrimeBreakdown = ({ reports }) => {
     </div>
   );
 };
-
 export default CrimeBreakdown;
