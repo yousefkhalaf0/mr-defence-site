@@ -258,7 +258,7 @@ const CrimeStats = () => {
         <div className="row g-4 p-4 ">
           {/* Total Reports Card */}
           <div className="col-md-6 col-lg-3">
-            <div className="card border-0 shadow-lg border-primary h-100">
+            <div className={`card  shadow-lg   h-100 ${styles.cardBorderLeft1}`}>
               <div className="card-body text-center">
                 <h6 className="text-uppercase text-muted mb-2">Reports {selectedRegion !== "All" ? selectedRegion : ""}</h6>
                 <h2 className="display-4 fw-bold mb-1">{stats.total.current.toLocaleString()}</h2>
@@ -274,7 +274,7 @@ const CrimeStats = () => {
           
           {/* Violent Crimes Card */}
           <div className="col-md-6 col-lg-3 ">
-            <div className="card border-0 shadow-lg h-100">
+            <div className={`card  shadow-lg   h-100 ${styles.cardBorderLeft2}`}>
               <div className="card-body text-center">
                 <h6 className="text-uppercase text-muted mb-2">Violent Crimes</h6>
                 <h2 className="display-4 fw-bold mb-1">{stats.violent.current.toLocaleString()}</h2>
@@ -290,7 +290,7 @@ const CrimeStats = () => {
           
           {/* Property Crimes Card */}
           <div className="col-md-6 col-lg-3">
-            <div className="card border-0 shadow-lg h-100">
+            <div className={`card  shadow-lg   h-100 ${styles.cardBorderLeft3}`}>
               <div className="card-body text-center">
                 <h6 className="text-uppercase text-muted mb-2">Property Crimes</h6>
                 <h2 className="display-4 fw-bold mb-1">{stats.property.current.toLocaleString()}</h2>
@@ -306,7 +306,7 @@ const CrimeStats = () => {
           
           {/* Other Incidents Card */}
           <div className="col-md-6 col-lg-3">
-            <div className="card border-0 shadow-lg   h-100">
+            <div className={`card  shadow-lg   h-100 ${styles.cardBorderLeft4}`}>
               <div className="card-body text-center">
                 <h6 className="text-uppercase text-muted mb-2">Other Incidents</h6>
                 <h2 className="display-4 fw-bold mb-1">{stats.other.current.toLocaleString()}</h2>

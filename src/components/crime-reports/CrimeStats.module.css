@@ -59,11 +59,11 @@
 }
 
 .positive {
-  color: green;
+  color: red;
 }
 
 .negative {
-  color: red;
+  color: green;
 }
 .statsCard {
     transition: transform 0.3s;
@@ -94,4 +94,24 @@
     .select option {
       background-color: #3C4F5D;
       color: #ccc;
+    }
+    .cardBorderLeft1 { 
+      border-left: 10px solid hsl(211, 65%, 49%); /* سماكة ولون البوردر */
+      border-top-left-radius: 0.5rem; /* نفس دوران الكارت */
+      border-bottom-left-radius: 0.5rem; /* نفس دوران الكارت */
+    } 
+     .cardBorderLeft2 { 
+      border-left: 10px solid #971c1c; /* سماكة ولون البوردر */
+      border-top-left-radius: 0.5rem; /* نفس دوران الكارت */
+      border-bottom-left-radius: 0.5rem; /* نفس دوران الكارت */
+    } 
+     .cardBorderLeft3 { 
+      border-left: 10px solid #250d91; /* سماكة ولون البوردر */
+      border-top-left-radius: 0.5rem; /* نفس دوران الكارت */
+      border-bottom-left-radius: 0.5rem; /* نفس دوران الكارت */
+    }
+      .cardBorderLeft4 { 
+      border-left: 10px solid #496822; /* سماكة ولون البوردر */
+      border-top-left-radius: 0.5rem; /* نفس دوران الكارت */
+      border-bottom-left-radius: 0.5rem; /* نفس دوران الكارت */
     }
