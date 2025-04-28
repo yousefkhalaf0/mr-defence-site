@@ -14,14 +14,14 @@ import Premium from "./components/Premium/Premium";
 import Support from "./components/Support/Support";
 import Notfound from "./components/Notfound/Notfound";
 import Explore from "./components/Explore/Explore";
-import FormWithCustomValidation from './components/Authentication/Register';
-import Register from './components/Authentication/Register';  
-import Login from './components/Authentication/Login';  
+import FormWithCustomValidation from './components/Authentication/Register/Register';
+import Register from './components/Authentication/Register/Register';  
+import Login from './components/Authentication/Login/Login';  
 import Tutorials from './components/Tutorials/Tutorials';
 import CrimeReports from './components/crime-reports/CrimeReports';
 import EmergencyDashboard from './components/Dashboard/Dashboard';
+import Profile from './components/Authentication/Profile/Profile';
 
-// Layout فاضي للـ Authentication Pages
 const AuthLayout = ({ children }) => {
   return <div>{children}</div>;
 };
@@ -41,6 +41,7 @@ let router = createBrowserRouter([
       { path: "dashboard", element: <EmergencyDashboard /> },
       { path: "tutorials", element: <Tutorials /> },
       { path: "CrimeReports", element: <CrimeReports /> },
+      { path: "profile", element: <Profile /> },
       { path: "*", element: <Notfound /> },
     ],
   },
