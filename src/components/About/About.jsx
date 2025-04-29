@@ -1,10 +1,12 @@
 import React,{useEffect} from 'react';
 import styles from './About.module.css';
 import Carousel from './Carousel.jsx';
+import { useSelector } from 'react-redux';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 export default function About() {
+  const { content } = useSelector((state) => state.lang);
   useEffect(() => {
     AOS.init({duration:1000, once:true})
   }, [])
@@ -15,7 +17,7 @@ export default function About() {
         <div className={`py-5 ${styles.aboutText}`}   
 >
           <h1 className="title" data-aos="fade-down"
-  data-aos-delay="300">About Us</h1>
+  data-aos-delay="300">{content.aboutUs}</h1>
         </div>
 
       </div>
@@ -27,16 +29,13 @@ export default function About() {
         <div className=' row p-5 '>
         <div className="col-4" data-aos="fade-right">
           <h2 className='text-dark'>
-            What <span>We Do ?</span>
+            {content.what} <span className='text-danger'>{content.wedo}</span>
           </h2>
 
         </div>
         <div className="col-8" data-aos="fade-left">
           <p className={` ${styles.doingInfo}`}>
-            We deliver advanced monitoring solutions for comprehensive crime management.
-             Our platform empowers communities with crime data insights,
-              enabling proactive crime complaints and responses. 
-              Stay ahead of threats and protect your community.
+           {content.aboutText}
 
           </p>
 
@@ -56,7 +55,7 @@ export default function About() {
         <div className="row g-4   ">
         <div className={`col-lg-3  col-md-6 col-12 d-flex `} data-aos="fade-up" data-aos-delay="300">
           <div className={`${styles.card} w-100`}>
-<img src="/icons/aboutUser.svg" className='py-4' alt="" />
+<img src="/icons/aboutUser.svg" className='py-4 w-25' alt="" />
 
           <h4>Register or Login</h4>
           <p>
@@ -68,7 +67,7 @@ export default function About() {
         </div>
         <div className={`col-lg-3  col-md-6 col-12 d-flex `} data-aos="fade-up" data-aos-delay="500">
           <div className={`${styles.card} w-100`}>
-<img src="/icons/reportCrime.png" className='py-4' alt="" />
+<img src="/icons/reportCrime.png" className='py-4 w-25' alt="" />
 
           <h4>Report a Crime</h4>
           <p>Easily register your complaint and report crimes through our intuitive interface.</p>
@@ -77,7 +76,7 @@ export default function About() {
         </div>
         <div className={`col-lg-3  col-md-6 col-12 d-flex `}data-aos="fade-up" data-aos-delay="700">
           <div className={`${styles.card} w-100`}>
-  <img src="/icons/briefcase.svg" className='py-4' alt="" />
+  <img src="/icons/briefcase.svg" className='py-4 w-25' alt="" />
           <h4  className=''>Response to Crimes</h4>
           <p>Engage with the community by responding to crime reports and sharing information.</p>
           <br />
@@ -86,7 +85,7 @@ export default function About() {
          </div>
         <div className={`col-lg-3  col-md-6 col-12 d-flex `}data-aos="fade-up" data-aos-delay="900">
           <div className={`${styles.card} w-100`}>
-   <img src="/icons/checkMark.svg" className='py-4' alt="" />
+   <img src="/icons/checkMark.svg" className='py-4 w-25' alt="" />
           <h4 className=''>View Crime Statistics</h4>
           <p>Access detailed crime statistics and insights specific to Karachi.</p>
           <br /><br />
@@ -130,23 +129,24 @@ export default function About() {
     <div className='row g-4'>
     <div className="col-6 d-flex " data-aos="fade-right" data-aos-delay="300">
       <div className='d-flex justify-content-center align-items-center'>
-          <img src="icons/enhance1.svg" alt="" /> 
+          <img className='w-50' src="icons/enhance1.svg" alt="" /> 
         <p className='fw-bolder'>Safe & Secure Community</p>
       </div>
       
       </div><div className="col-6 d-flex py-3  " data-aos="fade-left" data-aos-delay="300">
-        <div className='d-flex justify-content-center align-items-center'><img src="icons/enhance2.svg" alt="" /> 
+        <div className='d-flex justify-content-center align-items-center'>
+          <img className='w-50' src="icons/enhance2.svg" alt="" /> 
         <p className='fw-bolder'>Registering Complaints</p></div>
         
       </div><div className="col-6 d-flex  " data-aos="fade-right" data-aos-delay="500">
         <div className='d-flex justify-content-center align-items-center'>
-          <img src="icons/enhance3.svg" alt="" /> 
+          <img className='w-50' src="icons/enhance3.svg" alt="" /> 
         <p className='fw-bolder'>Response Optimization</p>
         </div>
         
       </div><div className="col-6 d-flex" data-aos="fade-left" data-aos-delay="500">
         <div className='d-flex justify-content-center align-items-center'>
-                 <img src="icons/enhance4.svg" alt="" /> 
+                 <img className='w-50' src="icons/enhance4.svg" alt="" /> 
         <p className='fw-bolder'>Predictive Policing Solutions</p>
         </div>
  

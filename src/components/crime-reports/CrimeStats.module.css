@@ -96,22 +96,22 @@
       color: #ccc;
     }
     .cardBorderLeft1 { 
-      border-left: 10px solid hsl(211, 65%, 49%); /* سماكة ولون البوردر */
-      border-top-left-radius: 0.5rem; /* نفس دوران الكارت */
-      border-bottom-left-radius: 0.5rem; /* نفس دوران الكارت */
+      border-left: 10px solid hsl(211, 65%, 49%); 
+      border-top-left-radius: 0.5rem;
+      border-bottom-left-radius: 0.5rem;
     } 
      .cardBorderLeft2 { 
-      border-left: 10px solid #971c1c; /* سماكة ولون البوردر */
-      border-top-left-radius: 0.5rem; /* نفس دوران الكارت */
-      border-bottom-left-radius: 0.5rem; /* نفس دوران الكارت */
+      border-left: 10px solid #971c1c; 
+      border-top-left-radius: 0.5rem;
+      border-bottom-left-radius: 0.5rem;
     } 
      .cardBorderLeft3 { 
-      border-left: 10px solid #250d91; /* سماكة ولون البوردر */
-      border-top-left-radius: 0.5rem; /* نفس دوران الكارت */
-      border-bottom-left-radius: 0.5rem; /* نفس دوران الكارت */
+      border-left: 10px solid #250d91; 
+      border-top-left-radius: 0.5rem;
+      border-bottom-left-radius: 0.5rem;
     }
       .cardBorderLeft4 { 
-      border-left: 10px solid #496822; /* سماكة ولون البوردر */
-      border-top-left-radius: 0.5rem; /* نفس دوران الكارت */
-      border-bottom-left-radius: 0.5rem; /* نفس دوران الكارت */
+      border-left: 10px solid #496822; 
+      border-top-left-radius: 0.5rem;
+      border-bottom-left-radius: 0.5rem; 
     }

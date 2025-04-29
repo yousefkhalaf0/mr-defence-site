@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleLang, toggleTheme, logout } from '../Store/Store';
 import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import logo from "./theSmallLogo.svg";
@@ -9,6 +11,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaSignOutAlt } from 'react-icons/fa';
 const Navbar = () => {
+
+  const dispatch = useDispatch();
+  const { content, lang } = useSelector((state) => state.lang);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
@@ -92,8 +97,7 @@ const Navbar = () => {
                   }`
                 }
                 to="/"
-              >
-                Home
+              >{content.home}
               </NavLink>
             </li>
             <li className="nav-item">
@@ -105,7 +109,7 @@ const Navbar = () => {
                 }
                 to="/about"
               >
-                About Us
+                {content.aboutUs}
               </NavLink>
             </li>
             <li className="nav-item">
@@ -117,7 +121,7 @@ const Navbar = () => {
                 }
                 to="/CrimeReports"
               >
-                Crime Reports
+                {content.crimeReports}
               </NavLink>
             </li>
             <li className="nav-item">
@@ -129,7 +133,7 @@ const Navbar = () => {
                 }
                 to="/Explore"
               >
-                Explore
+                {content.explore}
               </NavLink>
             </li>
             <li className="nav-item">
@@ -141,7 +145,7 @@ const Navbar = () => {
                 }
                 to="/tutorials"
               >
-                Tutorials
+                {content.tutorials}
               </NavLink>
             </li>
             <li className="nav-item">
@@ -153,8 +157,16 @@ const Navbar = () => {
                 }
                 to="/contact"
               >
-                Contact Us
+                {content.contactUs}
               </NavLink>
+            </li> <li className="nav-item">
+            <button className="btn btn-lang mx-2 btn-outline-warning" onClick={() => dispatch(toggleLang())}>
+              {lang === 'ar' ? (
+                'EN'
+              ) : (
+                'AR'
+              )}
+            </button>
             </li>
 
             {/* User Icon and Logout */}

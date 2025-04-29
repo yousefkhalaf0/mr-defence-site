@@ -67,6 +67,14 @@
 
 
 }
+.card img{
+  /* img icon */
+  width: 100px !important;
+  height:150px !important;
+
+
+  
+}
 .howItwork .card:hover{ transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
 cursor: pointer;}

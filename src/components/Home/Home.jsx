@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Home.module.css';
 import Carousel from '../About/Carousel';
+import { useSelector } from 'react-redux';
 import RecentCrimes from './RecentCrimes.jsx';
 import { getDoc, doc, collection, getDocs, query, where, getCountFromServer } from "firebase/firestore";
 import { db } from "../../firebase"; 
@@ -8,6 +9,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 const Home = () => {
+  const { content } = useSelector((state) => state.lang);
   const [statistics, setStatistics] = useState({
     totalCases: 0,
     totalUsers: 0,
@@ -113,10 +115,10 @@ const Home = () => {
         <div className={`position-absolute top-0 start-0 w-100 h-100 ${styles.overlay}`}></div>
         <div className="container h-100 d-flex flex-column justify-content-center align-items-center position-relative z-1 text-center">
           <h1 className="fw-bold mb-3" data-aos="fade-up">
-            Report, Track, Prevent – For a Safer Tomorrow
+            {content.title}
           </h1>
           <p className="lead mb-5" data-aos="fade-up" data-aos-delay="200">
-            Safeguarding Together: Your Bridge to a Secure Environment
+           {content.subtitle}
           </p>
           <div className="row text-center gx-4">
   <div className={`col-md-4 mb-4 ${styles.lest}`} data-aos="zoom-in" data-aos-delay="300">
@@ -124,7 +126,7 @@ const Home = () => {
       <img src="icons/bagg.svg" alt="" />
       <div>
         <h6>{statistics.loading ? '...' : formatNumber(statistics.totalCases)}</h6>
-        <p className="text-secondary">Cases</p>
+        <p className="text-secondary">{content.cases}</p>
       </div>
     </div>
   </div>
@@ -134,7 +136,7 @@ const Home = () => {
       <img src="icons/users.svg" alt="" />
       <div>
         <h6>{statistics.loading ? '...' : formatNumber(statistics.totalUsers)}</h6>
-        <p className="text-secondary">People</p>
+        <p className="text-secondary">{content.people}</p>
       </div>
     </div>
   </div>
@@ -144,7 +146,7 @@ const Home = () => {
       <img src="icons/building.svg" alt="" />
       <div>
         <h6>{statistics.loading ? '...' : formatNumber(statistics.totalAreas)}</h6>
-        <p className="text-secondary text-nowrap">Areas</p>
+        <p className="text-secondary text-nowrap">{content.areas}</p>
       </div>
     </div>
   </div>
@@ -177,7 +179,7 @@ const Home = () => {
       data-aos-once="true"
     >
       <h1>
-        <span className="">Enhancing</span> Community Safety Together
+        <span className="">{content.Enhancing}</span>  {content.titleEnhancing}
       </h1>
       <p>{showFullText ? fullText : shortText}</p>
       <div className="d-flex gap-3 align-items-center mt-3">
