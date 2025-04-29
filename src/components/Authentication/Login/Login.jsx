@@ -1,4 +1,4 @@
- import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../../firebase';
 import { useNavigate } from 'react-router-dom';
@@ -124,7 +124,7 @@ const Login = () => {
           <img 
             src="/imgs/verification.png" 
             alt="Login Illustration" 
-            className="auth-image"
+            className="auth-image22 w-50 h-50"
           />
           <div className="gradient-overlay"></div>
         </div>
