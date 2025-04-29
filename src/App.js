@@ -20,6 +20,7 @@ import Tutorials from './components/Tutorials/Tutorials';
 import CrimeReports from './components/crime-reports/CrimeReports';
 import EmergencyDashboard from './components/Dashboard/Dashboard';
 import Profile from './components/Authentication/Profile/Profile';
+import ContactUs from './components/ContactUs/ContactUs'
 
 const AuthLayout = ({ children }) => {
   return <div>{children}</div>;
@@ -41,6 +42,7 @@ let router = createBrowserRouter([
       { path: "tutorials", element: <Tutorials /> },
       { path: "CrimeReports", element: <CrimeReports /> },
       { path: "profile", element: <Profile /> },
+      { path: "contact", element: <ContactUs /> },
       { path: "*", element: <Notfound /> },
     ],
   },

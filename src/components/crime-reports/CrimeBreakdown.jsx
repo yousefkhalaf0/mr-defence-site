@@ -146,8 +146,8 @@ const CrimeBreakdown = ({ reports }) => {
                   {renderTrendArrow(item.trend)}
                 </div>
                 <div className={styles.area}>{item.area}</div>
-                <div className={`${styles.change} ${item.trend > 0 ? styles.increaseText : item.trend < 0 ? styles.decreaseText : ''}`}>
-                  {item.trend > 0 ? '↑' : item.trend < 0 ? '↓' : ''} {Math.abs(item.changePercentage)}% from {item.previousYear}
+                <div className={`${styles.change} ${item.trend > 0 ? styles.decreaseText : item.trend < 0 ? styles.increaseText : ''}`}>
+                  {item.trend > 0 ? '↓' : item.trend < 0 ? '↑' : ''} {Math.abs(item.changePercentage)}% from {item.previousYear}
                 </div>
               </div>
             ))

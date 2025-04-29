@@ -11,7 +11,7 @@ export default function About() {
   
   return (
     <>
-    <div className="row m-0">
+    <div className="row m-0 pt-5">
         <div className={`py-5 ${styles.aboutText}`}   
 >
           <h1 className="title" data-aos="fade-down"

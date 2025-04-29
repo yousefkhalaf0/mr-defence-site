@@ -9,7 +9,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyCcN5he4zN046-_ukMN9aLzDlJs07gCuaE",
   authDomain: "mr-defence-d9934.firebaseapp.com",
   projectId: "mr-defence-d9934",
-  storageBucket: "mr-defence-d9934.appspot.com", // ⬅️ خلي بالك من typo هنا, كتباه غلط عندك
+  storageBucket: "mr-defence-d9934.appspot.com", 
   messagingSenderId: "475084501813",
   appId: "1:475084501813:web:8405774d79ba0825a6527c",
   measurementId: "G-EDW96QQFCV"
